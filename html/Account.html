@@ -9,12 +9,19 @@
       font-size: 15px;
       color: black;
     }
-    header {
-  background-color: lightskyblue;
-  padding: 20px;
-  text-align: center;
-  font-size: 20px;
-  color: black;
+  .headerBox {
+	background-color: lightskyblue;
+	padding: 20px;
+	height: 80px;
+	font-size: 20px;
+	color: black;
+	position: relative;
+  }
+  .pageTitle{
+	position: absolute;
+    left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
   }
   .rectangleB {
   text-align: center;
@@ -54,10 +61,14 @@
     <a href="Inbox.html">Inbox</a>
     <a href="Account.html">Account</a>
   </nav>
-  <header>
-    <img src="media/Placeholder.png" width="50" height="50" style="float:left">
-  <h1>Account</h1>
-  </header>
+  <div class = "headerBox">
+  
+    <img src="media/TutorCenterLogo.png" width="80" height="80" style="float:left">
+	<div class = "pageTitle">
+		<h1>Account</h1>
+	</div>
+  
+  </div>
   <br>
 <div class="rectangleB">
   <img src="media/PlaceholderPicture.png" width="200" height="200" style="float:left">
