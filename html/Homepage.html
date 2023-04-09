@@ -1,3 +1,5 @@
+
+
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,23 +25,46 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
   }
-  .rectangle1 {
-  text-align: center;
+    
+  * {
+  box-sizing: border-box;
+  }
+  /* Style the search field */
+  form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  text-align: left;
   height: 50px;
   width: 1000px;
-  background-color: lightskyblue;
   color: black;
   position: relative;
+  background: #f1f1f1;
   margin: auto; 
   line-height: 50px;
 }
-.rectangle2 {
+form.example button {
   text-align: center;
   height: 50px;
-  width: 200px;
-  background-color: black;
+  width: 100px;
+  padding: 10px;
+  background: lightskyblue;
   color: white;
-  line-height: 50px;
+  background-color: black;
+  font-size: 17px;
+  color: white;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+    form.example button:hover {
+  background: lightskyblue;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
   </style>
 </head>
@@ -59,10 +84,15 @@
   
   </div>
 <br>
-<div class="rectangle1">
-<div class="rectangle2">
-  <p>Search</p>
-</div>
-</div>
+  
+<!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- The form -->
+<form class="example" action="action_page.php">
+  <input type="text" placeholder="Search.." name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
 </body>
 </html> 
