@@ -173,7 +173,14 @@ hr {
     
     if(email.endsWith('@lsu.edu')){
         const user = new User({ email, password });
-        user.save();
+        user.save(function(err) {
+           if (err) {
+              console.error(err);
+           }else{
+               console.log('User saved');
+               window.location.href = "index.html"; //Redirect to login page
+           }
+       });
     } 
     else{
         alert('Must enter LSU email');
