@@ -122,10 +122,10 @@ hr {
       <p>Please fill in this form to create an account.</p>
       <hr>
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
+      <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
       <label for="psw-repeat"><b>Repeat Password</b></label>
       <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
@@ -147,13 +147,12 @@ hr {
  
  <script>
   //methods to save signup info to database
-  
+  const mongoose = require('mongoose');
   const signupForm = document.getElementById('signup-form');
   
   // add event listener to the form submission
   signupForm.addEventListener('submit', function(event) {
   event.preventDefault();
-  const mongoose = require('mongoose');
   
   // Replace 'nottest' with the database name
   const uri = "mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.net/UserAccounts";
