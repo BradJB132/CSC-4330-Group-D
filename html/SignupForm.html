@@ -151,9 +151,9 @@ hr {
   const signupForm = document.getElementById('signup-form');
   
   // add event listener to the form submission
-  signupForm.addEventListener('submit', function(event) {
-  event.preventDefault();
+  signupForm.addEventListener('submit', saveUser()); 
   
+  function saveUser() {
   // Replace 'nottest' with the database name
   const uri = "mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.net/UserAccounts";
 
@@ -166,8 +166,6 @@ hr {
 
     const User = mongoose.model('User', userSchema);
     
-    //function to save user
-    function saveUser() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('psw').value;
     
