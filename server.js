@@ -19,6 +19,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/homepage', (req, res) => {
+  res.sendFile(path.join(__dirname, 'html', 'Homepage.html'));
+});
+
+app.get('/navigate', (req, res) => {
+  res.redirect('/homepage');
+});
+
 // start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 30207;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
