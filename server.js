@@ -2,18 +2,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const cookie = require('cookie-parser');
 const cookieParser = require('cookie-parser');
 const { connection, User } = require('./database');
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // create an express app
 const app = express();
 
 //load cookie parser
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'html', 'media')));
