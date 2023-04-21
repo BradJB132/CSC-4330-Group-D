@@ -28,7 +28,7 @@
                               console.error(err);
                           } else {
                               console.log('User saved');
-                              window.location.href = "index.html"; //Redirect to login page
+                              window.location.href = "/navHomepage"; //Redirect to login page
                           }
                       });
                   }
