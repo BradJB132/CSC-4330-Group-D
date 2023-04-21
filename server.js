@@ -27,7 +27,7 @@ app.post("/login", (req, res) => {
     var myData = new User(req.body);
     myData.save()
         .then(item => {
-            res.send("Name saved to database");
+            res.redirect("/homepage");
         })
         .catch(err => {
             res.status(400).send("Unable to save to database");
