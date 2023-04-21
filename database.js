@@ -7,6 +7,8 @@ mongoose.connect('mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.ne
 
 // define the schema for a user
 const userSchema = new mongoose.Schema({
+  firstName: String,
+  lastNameName: String,
   username: String,
   password: String
 });
