@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 // connect to MongoDB using Mongoose
-mongoose.connect('mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.net/UserAccounts', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.net/TutorBaseData', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 
@@ -42,6 +42,35 @@ app.get('/schedule', (req, res) => {
 
 app.get('/signupform', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'SignupForm.html'));
+
+    const signupForm = document.getElementById('signup-form');
+    signupForm.addEventListener("btn", saveUser());
+    function saveUser() {
+        
+        const userSchema = new mongoose.Schema({
+            email: String,
+            password: String
+        });
+        const User = mongoose.model('User', userSchema);
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('psw').value;
+
+        if (email.endsWith('@lsu.edu')) {
+            const user = new User({ email, password });
+            user.save(function (err) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log('User saved');
+                    window.location.href = "/navHomepage"; 
+                }
+            });
+        }
+        else {
+            alert('Must enter LSU email');
+        }
+    }
 });
 
 app.get('/navHomepage', (req, res) => {
