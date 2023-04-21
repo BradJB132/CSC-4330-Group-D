@@ -4,14 +4,10 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cookie = require('cookie-parser');
 const cookieParser = require('cookie-parser');
+const { connection, User } = require('./database');
 
 // create an express app
 const app = express();
-
-// connect to MongoDB using Mongoose
-mongoose.connect('mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.net/TutorBaseData', { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log('MongoDB connection error:', err));
 
 //load cookie parser
 app.use(cookieParser());
@@ -23,6 +19,40 @@ app.use(express.static(path.join(__dirname, 'html', 'media')));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+// route for handling login requests
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // find a user with the given username and password
+  User.findOne({ username: username, password: password }, (err, user) => {
+    if (err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
+    else if (!user) {
+      res.sendStatus(401);
+    }
+    else {
+      // set the "loggedIn" cookie to the user's ID
+      res.cookie('loggedIn', user._id);
+
+      // redirect to the homepage
+      res.redirect('/homepage');
+    }
+  });
+});
+
+// route for handling logout requests
+app.post('/logout', (req, res) => {
+  // clear the "loggedIn" cookie
+  res.clearCookie('loggedIn');
+
+  // redirect to the login page
+  res.redirect('/');
+});
+
+
 
 app.get('/homepage', (req, res) => {
   res.sendFile(path.join(__dirname, 'html', 'Homepage.html'));
@@ -42,35 +72,6 @@ app.get('/schedule', (req, res) => {
 
 app.get('/signupform', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'SignupForm.html'));
-
-    const signupForm = document.getElementById('signup-form');
-    signupForm.addEventListener("btn", saveUser());
-    function saveUser() {
-        
-        const userSchema = new mongoose.Schema({
-            email: String,
-            password: String
-        });
-        const User = mongoose.model('User', userSchema);
-
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('psw').value;
-
-        if (email.endsWith('@lsu.edu')) {
-            const user = new User({ email, password });
-            user.save(function (err) {
-                if (err) {
-                    console.error(err);
-                } else {
-                    console.log('User saved');
-                    window.location.href = "/navHomepage"; 
-                }
-            });
-        }
-        else {
-            alert('Must enter LSU email');
-        }
-    }
 });
 
 app.get('/navHomepage', (req, res) => {
