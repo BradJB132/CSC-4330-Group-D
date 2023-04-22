@@ -37,23 +37,39 @@ app.post("/signup", (req, res) => {
         .catch(err => {
             res.status(400).send("Unable to save to database");
         });
-        
-  // find a user with the given username and password
-  User.findOne({ username: username, password: password }, (err, user) => {
+});
+
+// route for handling login requests
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  User.findOne(username, (err, user) => {
     if (err) {
       console.error(err);
-      res.sendStatus(500);
+      return res.status(500).send('Internal server error');
     }
-    else if (!user) {
-      res.sendStatus(401);
-    }
-    else {
-      // set the "loggedIn" cookie to the user's ID
-      res.cookie('loggedIn', user._id);
 
-      // redirect to the homepage
-      res.redirect('/homepage');
+    if (!user) {
+      return res.status(401).send('Invalid email or password');
     }
+
+    // compare the given password with the user's hashed password
+    bcrypt.compare(password, user.password, (err, isMatch) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Internal server error');
+      }
+
+      if (!isMatch) {
+        return res.status(401).send('Invalid email or password');
+      }
+
+      // set a cookie to indicate that the user is logged in
+      res.cookie('loggedIn', true);
+
+      // redirect the user to the homepage
+      res.redirect('/homepage');
+    });
   });
 });
 
