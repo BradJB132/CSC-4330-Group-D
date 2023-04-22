@@ -2,7 +2,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const { connection, User } = require('./database');
 var bodyParser = require('body-parser');
@@ -24,6 +23,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+//route for handling signup requests
 app.post("/signup", (req, res) => {
   const { username, password } = req.body;
   // check if the email address ends with .edu
@@ -41,37 +41,27 @@ app.post("/signup", (req, res) => {
 });
 
 // route for handling login requests
-app.post('/login', (req, res) => {
+app.post('/login', async function(req, res) => {
+try{
   const { username, password } = req.body;
-  const user = await User.findOne({username});
-  User.findOneByUsername(username, (err, user) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Internal server error');
+  const user = await User.findOne({username: req.body.username});
+  if (user) {
+          //check if password matches
+          const result = req.body.password === user.password;
+          if (result) {
+             // set a cookie to indicate that the user is logged in
+            res.cookie('loggedIn', true);
+            // redirect the user to the homepage
+            res.redirect('/homepage');
+          } else {
+            res.status(400).json({ error: "password doesn't match" });
+          }
+        } else {
+          res.status(400).json({ error: "User doesn't exist" });
+        }
+   }catch (error) {
+        res.status(400).json({ error });
     }
-
-    if (!user) {
-      return res.status(401).send('Invalid email or password');
-    }
-
-    // compare the given password with the user's hashed password
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Internal server error');
-      }
-
-      if (!isMatch) {
-        return res.status(401).send('Invalid email or password');
-      }
-
-      // set a cookie to indicate that the user is logged in
-      res.cookie('loggedIn', true);
-
-      // redirect the user to the homepage
-      res.redirect('/homepage');
-    });
-  });
 });
 
 // route for handling logout requests
@@ -84,23 +74,27 @@ app.post('/logout', (req, res) => {
 });
 
 
-
+//Showing homepage
 app.get('/homepage', (req, res) => {
   res.sendFile(path.join(__dirname, 'html', 'Homepage.html'));
 });
 
+//Showing account page
 app.get('/account', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
 
+//Showing inbox page
 app.get('/inbox', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Inbox.html'));
 });
 
+//Showing Schedule page
 app.get('/schedule', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'Schedule.html'));
 });
 
+//Showing Signup form
 app.get('/signupform', (req, res) => {
     res.sendFile(path.join(__dirname, 'html', 'SignupForm.html'));
 });
