@@ -43,7 +43,7 @@ app.post("/signup", (req, res) => {
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  User.findOne(username, (err, user) => {
+  User.findOneByUsername(username, (err, user) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Internal server error');
