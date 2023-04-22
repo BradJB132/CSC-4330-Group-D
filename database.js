@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.findOne = function(username, callback) {
-  this.findOne({username: String}, callback);
+  this.findOne({username: username}, callback);
 };
 
 // define the User model using the user schema
