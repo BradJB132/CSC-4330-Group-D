@@ -43,7 +43,7 @@ app.post("/signup", (req, res) => {
 // route for handling login requests
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username, password });
+  const user = await User.findOne({username});
   User.findOneByUsername(username, (err, user) => {
     if (err) {
       console.error(err);
