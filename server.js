@@ -24,6 +24,11 @@ app.get('/', (req, res) => {
 });
 
 app.post("/signup", (req, res) => {
+    
+  // check if the email address ends with .edu
+  if (!username.endsWith('.edu')) {
+    return res.status(400).send('Invalid email address. Email must end with .edu');
+  }
     var myData = new User(req.body);
     myData.save()
         .then(item => {
