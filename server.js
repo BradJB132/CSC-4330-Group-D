@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const { connection, User } = require('./database');
 var bodyParser = require('body-parser');
