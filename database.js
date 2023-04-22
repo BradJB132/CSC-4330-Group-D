@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
+userSchema.statics.findOneByEmail = function(username, callback) {
+  this.findOne({username: String}, callback);
+};
+
 // define the User model using the user schema
 const User = mongoose.model('User', userSchema);
 
