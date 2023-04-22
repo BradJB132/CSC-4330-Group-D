@@ -40,7 +40,11 @@
   <p>Forgot Password?</p>
 </div>
 <div class="rectangle">
-  <a href="/navHomepage">Login</a>
+  <form method="post" action="/login">
+       <input type="text" name="username" placeholder="Enter email" required>
+       <input type="text" name="password" placeholder="Enter password" required>
+       <input type="submit" value="Login">
+  </form>
 </div>
 <div style="text-align: center">
   <p>New User?</p>
