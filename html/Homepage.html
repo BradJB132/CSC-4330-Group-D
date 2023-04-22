@@ -88,9 +88,9 @@ form.example::after {
 <!-- Load icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- The form -->
+<!-- The search form -->
 <form class="example" action="action_page.php">
-  <input type="text" placeholder="Search.." name="search">
+  <input type="text" placeholder="Search.." name="search" onkeyup= "sendData(this)">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
