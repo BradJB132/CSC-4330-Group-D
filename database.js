@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
-userSchema.statics.findOne = function(username, callback) {
+userSchema.statics.findOneByUsername = function(username, callback) {
   this.findOne({username: username}, callback);
 };
 
