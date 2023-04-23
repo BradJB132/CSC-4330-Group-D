@@ -12,7 +12,7 @@ const session = require('express-session');
 const app = express();
 
 // set EJS as the template engine
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 //load cookie parser
 app.use(cookieParser());
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'html', 'media')));
 
 // route for serving the index.html file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.render('index');
 });
 
 //route for handling signup requests
@@ -38,16 +38,11 @@ app.post("/signup", (req, res) => {
     myData.save()
         .then(item => {
             res.cookie('userInfo', { firstName, lastName, username });
-            res.redirect("/homepage");
+            res.render('Homepage');
         })
         .catch(err => {
             res.status(400).send("Unable to save to database");
         });
-});
-
-//Showing login form
-app.get("/login", function (req, res) {
-    res.render("login");
 });
 
 // route for handling login requests
@@ -62,7 +57,7 @@ try{
              // set a cookie to indicate that the user is logged in
             res.cookie('loggedIn', true);
             // redirect the user to the homepage
-            res.redirect('/homepage');
+            res.render('Homepage');
           } else {
             res.status(400).json({ error: "password doesn't match" });
           }
@@ -80,36 +75,36 @@ app.get('/logout', function(req, res) {
   res.clearCookie('loggedIn');
 
   // redirect to the login page
-  res.redirect('/');
+  res.render('index');
 });
 
 
 
 //Showing homepage
 app.get('/homepage', (req, res) => {
-  res.sendFile(path.join(__dirname, 'html', 'Homepage.html'));
+  res.render('index');
 });
 
 //Showing account page
 app.get('/account', (req, res) => {
     const userInfo = req.cookies.userInfo;
     res.render('account', { userInfo });
-    res.sendFile(path.join(__dirname, 'html', 'Account.html'));
+    //res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
 
 //Showing inbox page
 app.get('/inbox', (req, res) => {
-    res.sendFile(path.join(__dirname, 'html', 'Inbox.html'));
+    res.render('Inbox');
 });
 
 //Showing Schedule page
 app.get('/schedule', (req, res) => {
-    res.sendFile(path.join(__dirname, 'html', 'Schedule.html'));
+    res.render('Schedule');
 });
 
 //Showing Signup form
 app.get('/signupform', (req, res) => {
-    res.sendFile(path.join(__dirname, 'html', 'SignupForm.html'));
+    res.render('SignupForm');
 });
 
 app.get('/navHomepage', (req, res) => {

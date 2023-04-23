@@ -1,0 +1,99 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSC 4330 Group D</title>
+  <style>
+     nav {
+      padding: 5px;
+      text-align: right;
+      font-size: 15px;
+      color: black;
+    }
+  .headerBox {
+	background-color: lightskyblue;
+	padding: 20px;
+	height: 120px;
+	font-size: 20px;
+	color: black;
+	position: relative;
+  }
+  .pageTitle{
+	position: absolute;
+    left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+  }
+    
+  * {
+  box-sizing: border-box;
+  }
+  /* Style the search field */
+  form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  text-align: left;
+  height: 50px;
+  width: 1000px;
+  color: black;
+  position: relative;
+  background: #f1f1f1;
+  margin: auto; 
+  line-height: 50px;
+}
+form.example button {
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  padding: 10px;
+  background: lightskyblue;
+  color: white;
+  background-color: black;
+  font-size: 17px;
+  color: white;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+    form.example button:hover {
+  background: lightskyblue;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+  </style>
+</head>
+<body>
+    <nav>
+        <a href="/navHomepage">Homepage</a>
+        <a href="/navSchedule">My Schedule</a>
+        <a href="/navInbox">Inbox</a>
+        <a href="/navAccount">Account</a>
+	<a href="/logout">Logout</a>
+    </nav>
+  <div class = "headerBox">
+  
+    <img src="TutorCenterLogo.png" width="80" height="80" style="float:left">
+	<div class = "pageTitle">
+		<h1>Homepage</h1>
+	</div>
+  
+  </div>
+<br>
+  
+<!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- The search form -->
+<form class="example" action="action_page.php">
+  <input type="text" placeholder="Search.." name="search" onkeyup= "sendData(this)">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+</body>
+</html> 
