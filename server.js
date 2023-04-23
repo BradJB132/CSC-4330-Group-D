@@ -42,9 +42,9 @@ app.post("/signup", (req, res) => {
     //let firstName = req.body.firstName;
    // let lastName = req.body.lastName;
     //let username = req.body.username;
-    //res.cookie("firstName", firstName);
-   // res.cookie("lastName", lastName);
-    //res.cookie("username", username);
+    res.cookie("firstName", req.body.firstName);
+    res.cookie("lastName", req.body.lastName);
+    res.cookie("username", req.body.username);
 });
 
 //Showing login form
