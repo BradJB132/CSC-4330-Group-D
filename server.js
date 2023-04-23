@@ -91,10 +91,13 @@ app.get('/homepage', (req, res) => {
 app.get('/account', async (req, res) => {
     const user = await User.findOne({username: req.cookies.username});
     if(user){
+       const saved = req.cookies.username === user.username;
+       if(saved){
        const username = user.username;
        const firstName = user.firstName;
        const lastName = user.lastName;
-    res.render('Account');
+       res.render('Account');
+       }
     }
     else {
           res.status(400).json({ error: "User doesn't exist" });
