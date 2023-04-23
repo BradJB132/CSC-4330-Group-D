@@ -34,17 +34,12 @@ app.post("/signup", (req, res) => {
     var myData = new User(req.body);
     myData.save()
         .then(item => {
+            res.cookie('userInfo', { firstName, lastName, username });
             res.redirect("/homepage");
         })
         .catch(err => {
             res.status(400).send("Unable to save to database");
         });
-    //let firstName = req.body.firstName;
-   // let lastName = req.body.lastName;
-    //let username = req.body.username;
-    res.cookie("firstName", req.body.firstName);
-    res.cookie("lastName", req.body.lastName);
-    res.cookie("username", req.body.username);
 });
 
 //Showing login form
@@ -85,21 +80,6 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-//route for handling account page
-//app.get('/account', async function(req, res) {
-//  try {
-//    var username = req.cookies.username;
-//    var firstName = req.cookies.firstName;
-//    var lastName = req.cookies.lastName;
-    // render the Account.html template with the user data
-//    return res.render("account", {
-//        firstName,
-//        lastName,
-//        userName,
-//    });  
-//  }catch (error) {
-//    res.status(400).json({ error });
-//});
 
 
 //Showing homepage
@@ -109,6 +89,8 @@ app.get('/homepage', (req, res) => {
 
 //Showing account page
 app.get('/account', (req, res) => {
+    const userInfo = req.cookies.userInfo;
+    res.render('account', { userInfo });
     res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
 
