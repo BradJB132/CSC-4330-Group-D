@@ -86,7 +86,7 @@ app.get('/account', async function(req, res) {
     const user = await User.findOne({ firstName: req.body.firstName, lastName: req.body.lastName, username: req.body.username }).exec();
     if (user) {
       // render the Account.html template with the user data
-      res.render('Account', { user });
+      res.render('account', { user: user });
     } else {
       res.status(404).send('User not found');
     }
