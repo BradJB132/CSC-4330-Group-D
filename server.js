@@ -86,20 +86,20 @@ app.get('/logout', function(req, res) {
 });
 
 //route for handling account page
-app.get('/account', async function(req, res) {
-  try {
-    var username = req.cookies.username;
-    var firstName = req.cookies.firstName;
-    var lastName = req.cookies.lastName;
+//app.get('/account', async function(req, res) {
+//  try {
+//    var username = req.cookies.username;
+//    var firstName = req.cookies.firstName;
+//    var lastName = req.cookies.lastName;
     // render the Account.html template with the user data
-    return res.render("account", {
-        firstName,
-        lastName,
-        userName,
-    });  
-  }catch (error) {
-    res.status(400).json({ error });
-});
+//    return res.render("account", {
+//        firstName,
+//        lastName,
+//        userName,
+//    });  
+//  }catch (error) {
+//    res.status(400).json({ error });
+//});
 
 
 //Showing homepage
