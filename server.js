@@ -89,14 +89,14 @@ app.get('/homepage', (req, res) => {
 
 //Showing account page
 app.get('/account', async (req, res) => {
-    const user = await User.findOne({username: req.cookies.username});
-    if(user){
+    const userId = await User.findOne({username: req.cookies.username});
+    if(userId){
        const saved = req.cookies.username === user.username;
        if(saved){
        const username = user.username;
        const firstName = user.firstName;
        const lastName = user.lastName;
-       res.render('Account');
+       res.render('Account', { username, firstName, lastName });
        }
     }
     else {
