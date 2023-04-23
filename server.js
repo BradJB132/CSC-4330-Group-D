@@ -79,31 +79,6 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-//Define session middleware
-app.use(session({
-  secret: 'mysecretkey',
-  resave: false,
-  saveUninitialized: true
-}));
-
-// Define route to display user information
-app.get('/account', async (req, res) => {
-  // Get user ID from session
-  const { name, username } = req.body;
-  try {
-  // Find user in database
-  const user = await User.findOne(req.body);
-    if (!user) {
-      return res.status(401).send('Unauthorized');
-    }
-
-    // Display user information
-    res.send(`Name: ${user.name}<br>Email: ${user.username}`);
-    }catch (err) {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-    }
-});
 
 //Showing homepage
 app.get('/homepage', (req, res) => {
