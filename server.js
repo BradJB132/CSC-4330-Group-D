@@ -37,7 +37,7 @@ app.post("/signup", (req, res) => {
     var myData = new User(req.body);
     myData.save()
         .then(item => {
-            res.cookie('userInfo', { firstName, lastName, username });
+            res.cookie('username', { username });
             res.render('Homepage');
         })
         .catch(err => {
@@ -56,6 +56,8 @@ try{
           if (result) {
              // set a cookie to indicate that the user is logged in
             res.cookie('loggedIn', true);
+            //cookie to save username
+            res.cookie('username', { username });
             // redirect the user to the homepage
             res.render('Homepage');
           } else {
