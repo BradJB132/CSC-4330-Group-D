@@ -90,21 +90,19 @@ app.use(session({
 app.get('/account', async (req, res) => {
   // Get user ID from session
   const userId = req.session.userId;
-  const user = await User.findById(userId).exec();
+  try {
   // Find user in database
-  User.findById(userId, (err, user) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Internal Server Error');
-    }
-
+  const user = await User.findById(userId).exec();
     if (!user) {
       return res.status(401).send('Unauthorized');
     }
 
     // Display user information
     res.send(`Name: ${user.name}<br>Email: ${user.email}`);
-  });
+    }catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+    }
 });
 
 //Showing homepage
