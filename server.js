@@ -94,12 +94,12 @@ app.get('/account', async (req, res) => {
        const username = user.username;
        const firstName = user.firstName;
        const lastName = user.lastName;
-    //res.render('Account', { user });
+    res.render('Account', { username, firstName, lastName });
     }
     else {
           res.status(400).json({ error: "User doesn't exist" });
         }
-    res.render('Account', { user });
+    
     //res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
 
