@@ -79,7 +79,7 @@
   </div>
   <br><br>
   <div class="rectangleG1">
-     <p>Email: <span id="email"></span></p>  
+     <p>Email: <span id="username"></span></p>  
   </div>
   <br>
   <div class="rectangleG1">
@@ -100,7 +100,7 @@
     // Retrieve user's information from server
     $.get('/account', function(data) {
       $('#name').text(data.name);
-      $('#email').text(data.email);
+      $('#email').text(data.username);
     });
   </script>
 </body>
