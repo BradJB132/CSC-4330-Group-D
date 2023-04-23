@@ -12,7 +12,7 @@ const session = require('express-session');
 const app = express();
 
 // set EJS as the template engine
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
 
 //load cookie parser
 app.use(cookieParser());
