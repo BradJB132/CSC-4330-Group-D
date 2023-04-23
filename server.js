@@ -80,11 +80,11 @@ app.get('/logout', function(req, res) {
 });
 
 // Define session middleware
-app.use(session({
-  secret: 'mysecretkey',
-  resave: false,
-  saveUninitialized: true
-}));
+//app.use(session({
+ // secret: 'mysecretkey',
+ // resave: false,
+ // saveUninitialized: true
+//}));
 
 // Define route to display user information
 app.get('/account', (req, res) => {
