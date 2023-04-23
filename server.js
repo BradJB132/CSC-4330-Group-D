@@ -89,16 +89,16 @@ app.use(session({
 // Define route to display user information
 app.get('/account', async (req, res) => {
   // Get user ID from session
-  const userId = req.session.userId;
+  const { name, username } = req.body;
   try {
   // Find user in database
-  const user = await User.findById(userId).exec();
+  const user = await User.findOne(req.body);
     if (!user) {
       return res.status(401).send('Unauthorized');
     }
 
     // Display user information
-    res.send(`Name: ${user.name}<br>Email: ${user.email}`);
+    res.send(`Name: ${user.name}<br>Email: ${user.username}`);
     }catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
