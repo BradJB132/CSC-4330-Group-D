@@ -86,22 +86,17 @@ app.get('/logout', function(req, res) {
 });
 
 //route for handling account page
-app.get('/account', async function(req, res) {
+app.post('/account', async function(req, res) {
   try {
-    // find the user by username
-    const user = await User.findOne({firstName: req.cookies.firstName, lastName: req.cookies.lastName, username: req.cookies.username}).exec();
     var username = req.cookies.username;
     var firstName = req.cookies.firstName;
     var lastName = req.cookies.lastName;
-    if (user) {
-      // render the Account.html template with the user data
-      res.render("account", { user });
-    } else {
-      res.status(404).send('User not found');
-    }
-  } catch (err) {
-    console.error(err);
-   res.status(500).send('Server error');
+    // render the Account.html template with the user data
+    return res.render("account", {
+        firstName,
+        lastName,
+        userName,
+    });  
   }
 });
 
