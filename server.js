@@ -83,7 +83,7 @@ app.get('/logout', function(req, res) {
 app.get('/account', async (req, res) => {
   try {
     // find the user by username
-    const user = await User.findOne({ username: req.body.username, firstName: req.body.firstName, lastName: req.body.lastName }).exec();
+    const user = await User.findOne({ firstName: req.body.firstName, lastName: req.body.lastName, username: req.body.username }).exec();
     if (user) {
       // render the Account.html template with the user data
       res.render('Account', { user });
