@@ -87,10 +87,10 @@ app.use(session({
 }));
 
 // Define route to display user information
-app.get('/account', (req, res) => {
+app.get('/account', async (req, res) => {
   // Get user ID from session
   const userId = req.session.userId;
-
+  const user = await User.findById(userId).exec();
   // Find user in database
   User.findById(userId, (err, user) => {
     if (err) {
