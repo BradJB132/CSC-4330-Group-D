@@ -86,7 +86,7 @@ app.get('/logout', function(req, res) {
 });
 
 //route for handling account page
-app.post('/account', async function(req, res) {
+app.post('/account', async function(req, res) => {
   try {
     var username = req.cookies.username;
     var firstName = req.cookies.firstName;
