@@ -88,7 +88,7 @@ app.get('/homepage', (req, res) => {
 //Showing account page
 app.get('/account', (req, res) => {
     const userInfo = req.cookies.userInfo;
-    res.render('account', { userInfo });
+    res.render('Account', { userInfo });
     //res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
 
