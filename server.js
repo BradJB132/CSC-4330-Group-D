@@ -39,12 +39,12 @@ app.post("/signup", (req, res) => {
         .catch(err => {
             res.status(400).send("Unable to save to database");
         });
-    let firstName = req.body.firstName;
-    let lastName = req.body.lastName;
-    let username = req.body.username;
-    res.cookie("firstName", firstName);
-    res.cookie("lastName", lastName);
-    res.cookie("username", username);
+    //let firstName = req.body.firstName;
+   // let lastName = req.body.lastName;
+    //let username = req.body.username;
+    //res.cookie("firstName", firstName);
+   // res.cookie("lastName", lastName);
+    //res.cookie("username", username);
 });
 
 //Showing login form
