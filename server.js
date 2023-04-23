@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 //route for handling signup requests
 app.post("/signup", (req, res) => {
-  const { username, password } = req.body;
+  const { firstName, lastName, username, password } = req.body;
   // check if the email address ends with .edu
   if (!username.endsWith('.edu')) {
     return res.status(400).send('Invalid email address. Email must end with .edu');
@@ -39,6 +39,12 @@ app.post("/signup", (req, res) => {
         .catch(err => {
             res.status(400).send("Unable to save to database");
         });
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let username = req.body.username;
+    res.cookie("firstName", firstName);
+    res.cookie("lastName", lastName);
+    res.cookie("username", username);
 });
 
 //Showing login form
@@ -83,10 +89,13 @@ app.get('/logout', function(req, res) {
 app.get('/account', async function(req, res) {
   try {
     // find the user by username
-    const user = await User.findOne({ firstName: req.body.firstName, lastName: req.body.lastName, username: req.body.username }).exec();
+    const user = await User.findOne({firstName: req.cookies.firstName, lastName: req.cookies.lastName, username: req.cookies.username}).exec();
+    //let username = req.cookies.username;
+    //let firstName = req.cookies.firstName;
+    //let lastName = req.cookies.lastName;
     if (user) {
       // render the Account.html template with the user data
-      res.render('account', { user: user });
+      res.render("account", { user });
     } else {
       res.status(404).send('User not found');
     }
