@@ -7,6 +7,8 @@ const { connection, User } = require('./database');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 
+// set EJS as the template engine
+app.set('view engine', 'ejs');
 
 // create an express app
 const app = express();
