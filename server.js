@@ -89,13 +89,17 @@ app.get('/homepage', (req, res) => {
 
 //Showing account page
 app.get('/account', async (req, res) => {
-    const userId = await User.findOne({username: req.cookies.username});
-    if(userId){
-    res.render('Account', { userId });
+    const user = await User.findOne({username: req.cookies.username});
+    if(user){
+       const username = user.username;
+       const firstName = user.firstName;
+       const lastName - user.lastName;
+    //res.render('Account', { user });
     }
     else {
           res.status(400).json({ error: "User doesn't exist" });
         }
+    res.render('Account', { user });
     //res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
 
