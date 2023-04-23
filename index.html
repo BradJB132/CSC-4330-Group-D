@@ -18,6 +18,12 @@
    position: relative;
    line-height: 20px;
    }
+   .emailBox {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%,-90%);
+   }
   .rectangle {
   text-align: center;
   line-height: 60px;
@@ -39,9 +45,15 @@
 </div>
 <div class="infoBox">
   <form method="post" action="/login">
+   <div class="emailBox">
        <input type="text" name="username" placeholder="Enter email" required>
+   </div>
+   <div class="passwordBox">
        <input type="text" name="password" placeholder="Enter password" required>
+   </div>
+   <div class="loginButton">
        <input type="submit" value="Login">
+   </div>
   </form>
 </div>
 <div style="text-align: center">
