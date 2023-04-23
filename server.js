@@ -70,7 +70,7 @@ try{
 });
 
 // route for handling logout requests
-app.post('/logout', (req, res) => {
+app.get('/logout', function(req, res) {
   // clear the "loggedIn" cookie
   res.clearCookie('loggedIn');
 
