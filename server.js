@@ -94,7 +94,7 @@ app.get('/account', async (req, res) => {
        const username = user.username;
        const firstName = user.firstName;
        const lastName = user.lastName;
-    res.render('Account', { username, firstName, lastName });
+    res.render('Account');
     }
     else {
           res.status(400).json({ error: "User doesn't exist" });
