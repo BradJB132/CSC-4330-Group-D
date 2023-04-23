@@ -80,13 +80,13 @@ app.get('/logout', function(req, res) {
 });
 
 //route for handling account page
-app.get('/account', async (req, res) => {
+app.get('/account', async function(req, res) => {
   try {
     // find the user by username
     const user = await User.findOne({ firstName: req.body.firstName, lastName: req.body.lastName, username: req.body.username }).exec();
     if (user) {
       // render the Account.html template with the user data
-      res.render('Account', { user });
+      res.render('/account', { user });
     } else {
       res.status(404).send('User not found');
     }
