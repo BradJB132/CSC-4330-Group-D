@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const { connection, User } = require('./database');
 var bodyParser = require('body-parser');
+const session = require('express-session');
 
 
 // create an express app
@@ -78,6 +79,33 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+// Define session middleware
+app.use(session({
+  secret: 'mysecretkey',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Define route to display user information
+app.get('/account', (req, res) => {
+  // Get user ID from session
+  const userId = req.session.userId;
+
+  // Find user in database
+  User.findById(userId, (err, user) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Internal Server Error');
+    }
+
+    if (!user) {
+      return res.status(401).send('Unauthorized');
+    }
+
+    // Display user information
+    res.send(`Name: ${user.name}<br>Email: ${user.email}`);
+  });
+});
 
 //Showing homepage
 app.get('/homepage', (req, res) => {
