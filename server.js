@@ -84,7 +84,7 @@ app.get('/logout', function(req, res) {
 
 //Showing homepage
 app.get('/homepage', (req, res) => {
-  res.render('Homepage');
+  res.render('Homepageh');
 });
 
 //Showing account page
