@@ -79,6 +79,12 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+//route for handling account page
+//app.post('/account', function(req, res) {
+//      const { firstName, lastName, username } = req.body;
+    
+// });
+
 
 //Showing homepage
 app.get('/homepage', (req, res) => {
