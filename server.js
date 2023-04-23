@@ -13,7 +13,7 @@ const app = express();
 
 // set EJS as the template engine
 app.set('view engine', 'ejs');
-app.set('views', __dirname + 'views');
+app.set('views', __dirname + '/views');
 //load cookie parser
 app.use(cookieParser());
 app.use(bodyParser.json());
