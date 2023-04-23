@@ -1,20 +1,110 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sign Up</title>
-    </head>
-
-    <body>
-        <h1>Sign Up</h1>
+    <style>
+  header {
+  background-color: lightskyblue;
+  padding: 30px;
+  text-align: center;
+  font-size: 20px;
+  color: black;
+  }
+  .infoBox {
+   text-align: center;
+   margin: 0 auto;
+   height: 400px;
+   width: 300px;
+   position: relative;
+   line-height: 20px;
+   }
+   .Text1 {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%,-95%);
+   }
+   .firstNameBox {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%,-90%);
+   }
+   .lastNameBox {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%,-75%);
+   }
+   .roleBoxText {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%,-65%);
+   }
+   .roleBox {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-60%);
+   }  
+   .Text2 {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%,-45%);
+   }
+   .emailBox {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%,-40%);
+   }
+   .passwordBox {
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%,-25%);
+   }
+   .signUpButton {
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    transform: translate(-50%,-10%);
+   }
+ </style>  
+</head>
+<body>
+ <header>
+    <img src="TutorCenterLogo.png" width="100" height="100">
+    <h1>Sign Up</h1>
+ </header>
+ <div class="infoBox">
         <form method="post" action="/signup">
-            <label>Enter Your Name</label><br>
+            <label class="Text1">Enter Your Name</label><br>
+        <div class="firstNameBox">
             <input type="text" name="firstName" placeholder="Enter first name..." required>
+        </div>
+        <div class="lastNameBox">
             <input type="text" name="lastName" placeholder="Enter last name..." required>
-            
-            <label>Enter Your Username and Password</label><br>
+        </div>
+        <label for="roleBox" class="roleBoxText">Choose a role:</label>
+        <select name="role" class="roleBox">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+            <option value="admin">Admin</option>
+        </select>
+        
+            <label class="Text2">Enter Your Username and Password</label><br>
+        <div class="emailBox">
             <input type="text" name="username" placeholder="Enter username..." required>
+        </div>
+        <div class="passwordBox">
             <input type="text" name="password" placeholder="Enter password..." required>
-            <input type="submit" value="Add User">
+        </div>
+        <div class="signUpButton">
+            <input type="submit" value="Sign Up">
+        </div>
         </form>
+</div>
     </body>
 </html>
