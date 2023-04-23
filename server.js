@@ -89,7 +89,7 @@ app.get('/homepage', (req, res) => {
 
 //Showing account page
 app.get('/account', (req, res) => {
-    const userId = await User.findOne({username: req.cookie.username});
+    const userId = await User.findOne({username: req.cookies.username});
     if(userId){
     res.render('Account', { userId });
     }
