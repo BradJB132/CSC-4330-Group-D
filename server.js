@@ -93,7 +93,7 @@ app.get('/account', async (req, res) => {
     if(user){
        const username = user.username;
        const firstName = user.firstName;
-       const lastName - user.lastName;
+       const lastName = user.lastName;
     //res.render('Account', { user });
     }
     else {
