@@ -97,7 +97,8 @@ app.post('/account', async function(req, res) => {
         lastName,
         userName,
     });  
-  }
+  }catch (error) {
+    res.status(400).json({ error });
 });
 
 
