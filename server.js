@@ -80,10 +80,21 @@ app.get('/logout', function(req, res) {
 });
 
 //route for handling account page
-//app.post('/account', function(req, res) {
-//      const { firstName, lastName, username } = req.body;
-    
-// });
+app.get('/account', async (req, res) => {
+  try {
+    // find the user by username
+    const user = await User.findOne({ username: req.body.username }).exec();
+    if (user) {
+      // render the Account.html template with the user data
+      res.render('Account', { user });
+    } else {
+      res.status(404).send('User not found');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
 
 
 //Showing homepage
