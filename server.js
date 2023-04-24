@@ -88,16 +88,21 @@ app.get('/homepage', (req, res) => {
 });
 
 //Showing account page
-app.get('/account', async (req, res) => {
-    const username = req.cookies.username;
-    User.findOne({ username }, (err, user) => {
-       if (err) throw err;
-       const firstName = user.firstName;
-       const lastName = user.lastName;
+//app.get('/account', async (req, res) => {
+//    const username = req.cookies.username;
+//    User.findOne({ username }, (err, user) => {
+//       if (err) throw err;
+//       const firstName = user.firstName;
+//       const lastName = user.lastName;
        //const email = user.username;
-       res.render('Account');
-    });
+//      res.render('Account');
+//    });
     //res.sendFile(path.join(__dirname, 'html', 'Account.html'));
+//});
+
+//Showing account page
+app.get('/account', (req, res) => {
+    res.render('Account');
 });
 
 //Showing inbox page
