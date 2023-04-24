@@ -96,7 +96,7 @@ app.get('/account', async (req, res) => {
       const firstName = user.firstName;
       const lastName = user.lastName;
       const email = user.username;
-      res.render('Account', firstName, lastName, email);
+      res.render('Account', {firstName, lastName, email});
     }
   catch(err){
       console.log(err);
