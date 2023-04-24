@@ -126,7 +126,8 @@ app.get('/account', async (req, res) => {
       const firstName = user.firstName;
       const lastName = user.lastName;
       const email = user.email;
-      res.render('Account', {firstName, lastName, email});
+      const role = user.role;
+      res.render('Account', {firstName, lastName, email, role});
     }
   catch(err){
       console.log(err);
