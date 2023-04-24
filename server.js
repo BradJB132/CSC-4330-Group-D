@@ -90,13 +90,27 @@ app.get('/homepage', (req, res) => {
 //Showing account page
 app.get('/account', async (req, res) => {
     const username = req.cookies.username;
-    const user = await User.findOne({ username }, (err, user) => {
+    try{
+      const user = await User.findOne(username);
+      console.log(user);
+      const firstName = user.firstName;
+      const lastName = user.lastName;
+      const email = user.username;
+      res.render('Account', firstName, lastName, email);
+    }
+  catch(err){
+      console.log(err);
+    }
+
+
+
+   /* const user = await User.findOne({ username }, (err, user) => {
        if (err) throw err;
     });
     const firstName = user.firstName;
     const lastName = user.lastName;
-    const email = user.username;
-    res.render('Account');
+    const email = user.username; */
+
 });
 
 //Showing account page
