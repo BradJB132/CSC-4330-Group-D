@@ -94,8 +94,8 @@ app.get('/account', async (req, res) => {
        if (err) throw err;
        const firstName = user.firstName;
        const lastName = user.lastName;
-       const email = user.username;
-       res.render('Account', { firstName, lastName, email });
+       //const email = user.username;
+       res.render('Account', { firstName, lastName });
     });
     //res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
