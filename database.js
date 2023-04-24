@@ -14,21 +14,25 @@ const userSchema = new mongoose.Schema({
   role: String
 });
 
+//user schema for students
 const studentSchema = new mongoose.Schema({
   userInfo: userSchema,
   requests: [String],
   schedule: [String]
 });
 
+//user schema for tutors
 const tutorSchema = new mongoose.Schema({
   userInfo: userSchema,
   requests: [String],
   schedule: [String]
 });
 
+//user schema for admin
 const adminSchema = new mongoose.Schema({
   userInfo: userSchema,
 });
+
 
 // define the User model using the user schema
 const User = mongoose.model('User', userSchema);
@@ -42,5 +46,6 @@ module.exports = {
   User: User,
   Student: Student,
   Tutor: Tutor,
-  Admin, Admin
+  Admin, Admin,
+ 
 };
