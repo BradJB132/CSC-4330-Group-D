@@ -120,9 +120,8 @@ app.get('/homepage', (req, res) => {
 
 //Showing account page
 app.get('/account', async (req, res) => {
-    const email = req.cookies.email;
     try{
-      const user = await User.findOne(email);
+      const user = await User.findOne({email: req.cookies.email});
       console.log(user);
       const firstName = user.firstName;
       const lastName = user.lastName;
