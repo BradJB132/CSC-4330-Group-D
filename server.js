@@ -113,9 +113,14 @@ app.get('/logout', function(req, res) {
   res.render('index');
 });
 
-//Showing homepage
-app.get('/homepage', (req, res) => {
-  res.render('Homepage');
+//Showing homepage with tutors
+app.get('/homepage', async (req, res) => {
+  try {
+    const tutors = await Tutor.find({});
+    res.render('Homepage', { tutors });
+  } catch (error) {
+    res.status(400).json({ error });
+  }
 });
 
 //Showing account page
