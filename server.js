@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 //route for handling signup requests
 app.post("/signup", (req, res) => {
-  const { firstName, lastName, username, password } = req.body;
+  const { firstName, lastName, username, password, role } = req.body;
   // check if the email address ends with .edu
   if (!username.endsWith('.edu')) {
     return res.status(400).send('Invalid email address. Email must end with .edu');
@@ -38,11 +38,44 @@ app.post("/signup", (req, res) => {
     myData.save()
         .then(item => {
             res.cookie('username', { username });
-            res.render('Homepage');
         })
         .catch(err => {
             res.status(400).send("Unable to save to database");
         });
+
+    if(role == "student"){
+      var student = new Student(myData, [], []);
+      student.save()
+        .then(item => {
+          res.render('Homepage');
+        })
+        .catch(err => {
+          res.status(400).send("Unable to save to database");
+        });
+    }
+
+    if(role == "tutor"){
+      var tutor = new Tutor(myData, [], []);
+      tutor.save()
+          .then(item => {
+            res.render('Homepage');
+          })
+          .catch(err => {
+            res.status(400).send("Unable to save to database");
+          });
+    }
+
+    if(role == "admin"){
+      var admin = new Admin(myData);
+      admin.save()
+          .then(item => {
+            res.render('Homepage');
+          })
+          .catch(err => {
+            res.status(400).send("Unable to save to database");
+          });
+    }
+
 });
 
 // route for handling login requests
