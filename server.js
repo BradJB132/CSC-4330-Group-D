@@ -95,7 +95,7 @@ app.get('/account', async (req, res) => {
        const firstName = user.firstName;
        const lastName = user.lastName;
        //const email = user.username;
-       res.render('Account', { firstName, lastName });
+       res.render('Account');
     });
     //res.sendFile(path.join(__dirname, 'html', 'Account.html'));
 });
