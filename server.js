@@ -90,7 +90,7 @@ app.get('/homepage', (req, res) => {
 //Showing account page
 app.get('/account', async (req, res) => {
     const username = req.cookies.username;
-    User.findOne({ username }, (err, user) => {
+    const user = await User.findOne({ username }, (err, user) => {
        if (err) throw err;
     });
     const firstName = user.firstName;
