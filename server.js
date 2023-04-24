@@ -43,7 +43,7 @@ app.post("/signup", (req, res) => {
             res.status(400).send("Unable to save to database");
         });
 
-    if(role == "student"){
+    if(role == "Student"){
       var student = new Student(myData, [], []);
       student.save()
         .then(item => {
@@ -54,7 +54,7 @@ app.post("/signup", (req, res) => {
         });
     }
 
-    if(role == "tutor"){
+    if(role == "Tutor"){
       var tutor = new Tutor(myData, [], []);
       tutor.save()
           .then(item => {
@@ -65,7 +65,7 @@ app.post("/signup", (req, res) => {
           });
     }
 
-    if(role == "admin"){
+    if(role == "Admin"){
       var admin = new Admin(myData);
       admin.save()
           .then(item => {
