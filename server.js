@@ -29,15 +29,15 @@ app.get('/', (req, res) => {
 
 //route for handling signup requests
 app.post("/signup", (req, res) => {
-  const { firstName, lastName, username, password, role } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
   // check if the email address ends with .edu
-  if (!username.endsWith('.edu')) {
+  if (!email.endsWith('.edu')) {
     return res.status(400).send('Invalid email address. Email must end with .edu');
   }
     var myData = new User(req.body);
     myData.save()
         .then(item => {
-            res.cookie('username', { username });
+            res.cookie('email', { email });
         })
         .catch(err => {
             res.status(400).send("Unable to save to database");
@@ -81,16 +81,16 @@ app.post("/signup", (req, res) => {
 // route for handling login requests
 app.post('/login', async function(req, res) {
 try{
-  const { username, password } = req.body;
-  const user = await User.findOne({username: req.body.username});
+  const { email, password } = req.body;
+  const user = await User.findOne({email: req.body.email});
   if (user) {
           //check if password matches
           const result = req.body.password === user.password;
           if (result) {
              // set a cookie to indicate that the user is logged in
             res.cookie('loggedIn', true);
-            //cookie to save username
-            res.cookie('username', { username });
+            //cookie to save email
+            res.cookie('email', { email });
             // redirect the user to the homepage
             res.render('Homepage');
           } else {
@@ -120,13 +120,13 @@ app.get('/homepage', (req, res) => {
 
 //Showing account page
 app.get('/account', async (req, res) => {
-    const username = req.cookies.username;
+    const email = req.cookies.email;
     try{
-      const user = await User.findOne(username);
+      const user = await User.findOne(email);
       console.log(user);
       const firstName = user.firstName;
       const lastName = user.lastName;
-      const email = user.username;
+      const email = user.email;
       res.render('Account', {firstName, lastName, email});
     }
   catch(err){

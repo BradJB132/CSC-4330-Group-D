@@ -9,7 +9,7 @@ mongoose.connect('mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.ne
 const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  username: String,
+  email: String,
   password: String
 });
 
