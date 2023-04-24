@@ -13,15 +13,33 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
-userSchema.statics.findOneByUsername = function(username, callback) {
-  this.findOne({username: username}, callback);
-};
+const studentSchema = new mongoose.Schema({
+  userInfo: userSchema,
+  requests: [String],
+  schedule: [String]
+});
+
+const tutorSchema = new mongoose.Schema({
+  userInfo: userSchema,
+  requests: [String],
+  schedule: [String]
+});
+
+const adminSchema = new mongoose.Schema({
+  userInfo: userSchema,
+});
 
 // define the User model using the user schema
 const User = mongoose.model('User', userSchema);
+const Student = mongoose.model('Student', studentSchema);
+const Tutor = mongoose.model('Tutor', tutorSchema);
+const Admin = mongoose.model('Admin', adminSchema);
 
 // export the Mongoose connection and models
 module.exports = {
   connection: mongoose.connection,
-  User: User
+  User: User,
+  Student: Student,
+  Tutor: Tutor,
+  Admin, Admin
 };

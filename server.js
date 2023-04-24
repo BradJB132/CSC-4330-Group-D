@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const { connection, User } = require('./database');
+const { connection, User, Student, Tutor, Admin } = require('./database');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 
@@ -80,8 +80,6 @@ app.get('/logout', function(req, res) {
   res.render('index');
 });
 
-
-
 //Showing homepage
 app.get('/homepage', (req, res) => {
   res.render('Homepage');
@@ -101,16 +99,6 @@ app.get('/account', async (req, res) => {
   catch(err){
       console.log(err);
     }
-
-
-
-   /* const user = await User.findOne({ username }, (err, user) => {
-       if (err) throw err;
-    });
-    const firstName = user.firstName;
-    const lastName = user.lastName;
-    const email = user.username; */
-
 });
 
 //Showing account page
