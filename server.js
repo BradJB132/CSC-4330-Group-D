@@ -117,7 +117,7 @@ app.get('/logout', function(req, res) {
 app.get('/homepage', async (req, res) => {
   try {
     const emailGet = req.cookies.email;
-    const tutors = await Tutor.findOne(emailGet);
+    const tutors = await User.findOne(emailGet);
     const firstName = tutors.firstName;
     const lastName = tutors.lastName;
     const email = tutors.email;
