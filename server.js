@@ -178,7 +178,7 @@ app.get('/account', async (req, res) => {
 }); */
 
 //Showing inbox page
-app.get('/inbox', (req, res) => {
+app.get('/inbox', async (req, res) => {
   try{
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
