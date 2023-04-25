@@ -228,7 +228,7 @@ app.get('/inbox', async (req, res) => {
       res.render('StudentInbox');
     }
     else{
-      const messages = await Appointment.find({_id: user._id});
+      const messages = await Appointment.find({tutor: user._id});
       console.log(messages);
       res.render('TutorInbox', { messages });
     }
