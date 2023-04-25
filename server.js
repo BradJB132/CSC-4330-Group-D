@@ -228,7 +228,8 @@ app.get('/inbox', async (req, res) => {
       res.render('StudentInbox');
     }
     else{
-      res.render('TutorInbox');
+      const messages = await Schedule.find({_id: user._id});
+      res.render('TutorInbox', { messages });
     }
   }
   catch(err){

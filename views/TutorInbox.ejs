@@ -42,6 +42,29 @@
   
   </div>
 <p style="text-align: center;">No Messages</p>
+<div>
+<% for (var i = 0; i < messages.length; i++) { %>
+    <div class="card">
+      <h2><%= messages[i].name %></h2>
+      <h2><%= messages[i].dayTime %></h2>
+      <form action="/appointments" method="post">
+       <button type="submit">Accept Appointment</button>
+       <button type="submit">Deny Appointment</button>
+           <div class="form-control">
+              <label for="response">Reason for denial</label>
+              <textarea
+                name="response"
+                id="response"
+                cols="30"
+                rows="10"
+                required
+              ></textarea>
+            </div>
+      </form>
+    </div>
+  <% } %>
+
+</div>
 
 </body>
 </html> 
