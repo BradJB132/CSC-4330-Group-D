@@ -47,6 +47,12 @@
     top: 40%;
     transform: translate(-50%,-60%);
    }  
+   .subjectBox {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%,-60%);
+   }
    .Text2 {
     position: absolute;
     left: 50%;
@@ -87,12 +93,15 @@
         <div class="lastNameBox">
             <input type="text" name="lastName" placeholder="Enter last name..." required>
         </div>
-        <label for="roleBox" class="roleBoxText">Choose a role:</label>
+        <label for="roleBox" class="roleBoxText" id= "roleSelect">Choose a role:</label>
         <select name="role" class="roleBox">
             <option value="Student">Student</option>
             <option value="Tutor">Tutor</option>
             <option value="Admin">Admin</option>
         </select>
+        <div class="subjectBox">
+            <input type="text" name="subjects" id="subjectInput" placeholder="Enter subject(s)...">
+        </div>
         
             <label class="Text2">Enter Your Email and Password</label><br>
         <div class="emailBox">
@@ -106,5 +115,14 @@
         </div>
         </form>
 </div>
+<script>
+document.getElementById("roleSelect").addEventListener("change", function() {
+    if (this.value === "Tutor") {
+        document.getElementById("subjectInput").required = true;
+    } else {
+        document.getElementById("subjectInput").required = false;
+    }
+});
+</script>
     </body>
 </html>
