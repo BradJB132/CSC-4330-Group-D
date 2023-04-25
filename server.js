@@ -197,15 +197,16 @@ app.post('/appointments', (req, res) => {
     if (err) {
       res.status(500).send('Unable to create appointment.');
     } else {
-    // save appointment to tutor requests
-    Tutor.findByIdAndUpdate(req.body.tutorId, { $push: { requests: savedAppointment._id } }, (err) => {
-      if (err) {
-        res.status(500).send('Unable to update tutor requests.');
-      } else {
-        res.send('Appointment created successfully.');
-      }
+      // save appointment to tutor requests
+      Tutor.findByIdAndUpdate(req.body.tutorId, { $push: { requests: savedAppointment._id } }, (err) => {
+        if (err) {
+          res.status(500).send('Unable to update tutor requests.');
+        } else {
+          res.send('Appointment created successfully.');
+        }
+      });
+    }
   });
-});
 
 
 app.get('/request-appointment', async (req, res) => {
