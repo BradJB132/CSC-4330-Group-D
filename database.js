@@ -49,6 +49,10 @@ const appointmentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tutor',
     required: true
+  },
+  state: {
+    type = String,
+    required: true
   }
 });
 
@@ -89,20 +93,6 @@ module.exports = {
 let adminButtonItems = [];
 function adminButton(item){
     adminButtonItems.push(item);
-}
-
-
-
-async function requestAppointment(student, tutorID, subject, time){
-  try{
-    await Tutor.findOneAndUpdate(
-      { _id: tutorID},
-      {$push: {inbox: student + "," + subject + "," + time}},
-      done
-      );
-  }catch (error) {
-    res.status(400).json({ error });
-  }
 }
 
 async function acceptAppointment(student, tutorID, subject, time){

@@ -189,10 +189,11 @@ app.post('/appointments', (req, res) => {
   appointment.dayTime = date;
   appointment.name = name;
   appointment.tutor = tutorId;
+  appointment.state = "Pending";
 
   appointment.save()
        .then(item => {
-         res.send('Appointment created successfully.');
+         res.redirect('/schedule')
        })
         .catch(err => {
           console.log(err);
@@ -239,30 +240,6 @@ app.get('/schedule', (req, res) => {
 //Showing Signup form
 app.get('/signupform', (req, res) => {
     res.render('SignupForm');
-});
-
-app.get('/navHomepage', (req, res) => {
-  res.redirect('/homepage');
-});
-
-app.get('/navAccount', (req, res) => {
-    res.redirect('/account');
-});
-
-app.get('/navInbox', (req, res) => {
-    res.redirect('/inbox');
-});
-
-app.get('/navSchedule', (req, res) => {
-    res.redirect('/schedule');
-});
-
-app.get('/navSignup', (req, res) => {
-    res.redirect('/signupform');
-});
-
-app.get('/navIndex', (req, res) => {
-    res.redirect('/');
 });
 
 // start the server
