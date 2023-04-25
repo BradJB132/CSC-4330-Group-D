@@ -67,12 +67,12 @@
 <br>
 
 <div>
-  <h1>Tutors</h1>
-  <ul>
-    <% for (let i = 0; i < tutors.length; i++) { %>
-      <li><%= tutors[i].firstName + " " + tutors[i].lastName %><br><button>Click me</button></li>
-    <% } %>
-  </ul>
+  <% for (var i = 0; i < tutors.length; i++) { %>
+    <div class="card">
+      <h2><%= tutors[i].firstName %> <%= tutors[i].lastName %></h2>
+      <p><span class="email">Email:</span> <%= tutors[i].email %></p>
+    </div>
+  <% } %>
 </div>
 
 </body>
