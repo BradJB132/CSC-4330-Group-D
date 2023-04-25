@@ -25,6 +25,7 @@ const studentSchema = new mongoose.Schema({
 const tutorSchema = new mongoose.Schema({
   userInfo: userSchema,
   requests: [String],
+  subjects: [String],
   schedule: [String]
 });
 
