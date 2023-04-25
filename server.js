@@ -142,15 +142,15 @@ app.get('/admin', async (req, res) => {
   try{
     const students = await User.find({ role: 'Student'});
     const tutors = await User.find({ role: 'Tutor'});
-    const studentNames = [];
+ /*   const studentNames = [];
     const tutorNames = [];
     students.forEach(currentItem => {
         studentNames.push(currentItem.firstName + " " + currentItem.lastName);
     });
     tutors.forEach(currentItem => {
       tutorNames.push(currentItem.firstName + " " + currentItem.lastName);
-    });
-    res.render('Admin', {studentNames, tutorNames});
+    }); */
+    res.render('Admin', {students, tutors});
   } catch (error) {
     res.status(400).json({ error });
   }

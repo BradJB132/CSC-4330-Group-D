@@ -47,6 +47,7 @@ const userSchema = new mongoose.Schema({
 const studentSchema = new mongoose.Schema({
   userInfo: userSchema,
   requests: [String],
+  inbox: [String],
   schedule: [String]
 });
 
@@ -54,6 +55,7 @@ const studentSchema = new mongoose.Schema({
 const tutorSchema = new mongoose.Schema({
   userInfo: userSchema,
   requests: [String],
+  inbox: [String],
   subjects: [String],
   schedule: [String]
 });
@@ -86,8 +88,6 @@ userSchema.discriminator('admin', adminSchema);
 const User = mongoose.model('User', userSchema);
 //CHANGES END HERE
 
-
-
 // export the Mongoose connection and models
 module.exports = {
   connection: mongoose.connection,
@@ -96,3 +96,28 @@ module.exports = {
   Tutor: Tutor,
   Admin, Admin
 };
+
+function requestAppointment(student, tutor, time){
+
+}
+
+function acceptAppointment(student, time){
+
+}
+
+function declineAppointment(student, time, reason){
+
+}
+
+function createAppointment(student, tutor, time){
+
+}
+
+function removeAppointment(student, tutor, time){
+
+}
+
+function updateAppointment(student, tutor, time, newTime){
+
+}
+

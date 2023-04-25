@@ -48,16 +48,16 @@
 <div>
   <h1>Students</h1>
   <ul>
-    <% for (let i = 0; i < studentNames.length; i++) { %>
-      <li><%= studentNames[i] %><button>Click me</button></li>
+    <% for (let i = 0; i < students.length; i++) { %>
+      <li><%= students[i].firstName + " " + students[i].lastName %><button>Click me</button></li>
     <% } %>
   </ul>
 </div>
 <div>
   <h1>Tutors</h1>
   <ul>
-    <% for (let i = 0; i < tutorNames.length; i++) { %>
-      <li><%= tutorNames[i] %><button>Click me</button></li>
+    <% for (let i = 0; i < tutors.length; i++) { %>
+      <li><%= tutors[i].firstName + " " + tutors[i].lastName %><button>Click me</button></li>
     <% } %>
   </ul>
 </div>
