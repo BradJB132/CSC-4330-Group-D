@@ -92,7 +92,10 @@ try{
             //cookie to save email
             res.cookie('email', { email });
             // redirect the user to the homepage
-            res.render('Homepage');
+            const firstName = user.firstName;
+            const lastName = user.lastName;
+            const email = user.email;
+            res.render('Homepage', { firstName, lastName, email });
           } else {
             res.status(400).json({ error: "password doesn't match" });
           }
