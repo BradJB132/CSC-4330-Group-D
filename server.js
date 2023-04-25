@@ -189,15 +189,21 @@ app.post('/appointments', (req, res) => {
   const appointment = new Appointment({
     date,
     name,
+    tutor: req.body.tutorId,
     
   });
 
-  appointment.save((err) => {
+  appointment.save((err, savedAppointment) => {
     if (err) {
       res.status(500).send('Unable to create appointment.');
     } else {
-      res.send('Appointment created successfully.');
-    }
+    // save appointment to tutor requests
+    Tutor.findByIdAndUpdate(req.body.tutorId, { $push: { requests: savedAppointment._id } }, (err) => {
+      if (err) {
+        res.status(500).send('Unable to update tutor requests.');
+      } else {
+        res.send('Appointment created successfully.');
+      }
   });
 });
 
