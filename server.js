@@ -116,8 +116,12 @@ app.get('/logout', function(req, res) {
 //Showing homepage with tutors
 app.get('/homepage', async (req, res) => {
   try {
-    const tutors = await Tutor.find({});
-    res.render('Homepage', { tutors });
+    const emailGet = req.cookies.email;
+    const tutors = await Tutor.findOne(emailGet);
+    const firstName = tutors.firstName;
+    const lastName = tutors.lastName;
+    const email = tutors.email;
+    res.render('Homepage', { firstName, lastName, email });
   } catch (error) {
     res.status(400).json({ error });
   }
