@@ -66,5 +66,14 @@
   </div>
 <br>
 
+<div>
+  <h1>Tutors</h1>
+  <ul>
+    <% for (let i = 0; i < tutors.length; i++) { %>
+      <li><%= tutors[i].firstName + " " + tutors[i].lastName %><br><button>Click me</button></li>
+    <% } %>
+  </ul>
+</div>
+
 </body>
 </html> 
