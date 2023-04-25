@@ -193,8 +193,8 @@ app.post('/appointments', (req, res) => {
   }); */
   const appointment = new Appointment();
   appointment.dayTime = date;
-  appintment.name = name;
-  appintment.tutor = req.body.tutorId;
+  appointment.name = name;
+  appointment.tutor = req.body.tutorId;
 
   appointment.save()
        .then(item => {
