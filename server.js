@@ -190,7 +190,7 @@ app.post('/appointments', (req, res) => {
     date,
     name,
     tutor: req.body.tutorId,
-    
+
   });
 
   appointment.save((err, savedAppointment) => {
@@ -207,6 +207,7 @@ app.post('/appointments', (req, res) => {
       });
     }
   });
+});
 
 
 app.get('/request-appointment', async (req, res) => {
