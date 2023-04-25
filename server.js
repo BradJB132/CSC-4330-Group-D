@@ -127,7 +127,7 @@ app.get('/homepage', async (req, res) => {
     if(role == "Admin")
       res.redirect('/admin');
     else
-      res.render('Homepage', { tutors });
+      res.render('Homepage', { tutors, emailGet });
   } catch (error) {
     res.status(400).json({ error });
   }
