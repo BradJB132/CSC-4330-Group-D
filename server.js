@@ -213,7 +213,6 @@ app.get('/request-appointment', async (req, res) => {
     catch(err){
       console.log(err);
     }
-        
 });
 
 //Showing inbox page
