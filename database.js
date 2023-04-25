@@ -29,6 +29,7 @@ const tutorSchema = new mongoose.Schema({
   schedule: [String]
 }); */
 
+//CHANGES START HERE
 // define the schema for a user
 const userSchema = new mongoose.Schema({
   firstName: String,
@@ -54,6 +55,7 @@ const tutorSchema = new mongoose.Schema({
   subjects: [String],
   schedule: [String]
 });
+//CHANGES END HERE
 
 //user schema for admin
 const adminSchema = new mongoose.Schema({
@@ -66,6 +68,7 @@ const User = mongoose.model('User', userSchema);
 const Student = mongoose.model('Student', studentSchema);
 const Tutor = mongoose.model('Tutor', tutorSchema); */
 
+//CHANGES START HERE
 // create discriminator for student schema
 const Student = mongoose.model('Student', studentSchema);
 userSchema.discriminator('student', studentSchema);
@@ -76,6 +79,7 @@ userSchema.discriminator('tutor', tutorSchema);
 
 // define the User model using the user schema
 const User = mongoose.model('User', userSchema);
+//CHANGES END HERE
 
 const Admin = mongoose.model('Admin', adminSchema);
 
