@@ -174,7 +174,7 @@ app.get('/appointments', (req, res) => {
 
 // Route to handle appointment requests
 app.post('/appointments', (req, res) => {
-  const { dayTime, name, tutorId } = req.body;
+  const { dayTime, tutorId } = req.body;
 
   // Validate the input data
   if (!dayTime || !name) {
@@ -185,6 +185,9 @@ app.post('/appointments', (req, res) => {
   // Convert the dayTime string to a Date object
   const date = new Date(dayTime);
 
+  const user = User.findOne(req.cookies.email);
+  const name = user.firstName + " " + user.lastName;
+  
   const appointment = new Appointment();
   appointment.dayTime = date;
   appointment.name = name;
