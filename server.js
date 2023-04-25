@@ -186,11 +186,15 @@ app.post('/appointments', (req, res) => {
   const date = new Date(dayTime);
 
   // Create a new appointment in the database
-  const appointment = new Appointment({
+   /*const appointment = new Appointment({
     date,
     name,
     tutor: req.body.tutorId,
-  });
+  }); */
+  const appointment = new Appointment();
+  appointment.dayTime = date;
+  appintment.name = name;
+  appintment.tutor = req.body.tutorId;
 
   appointment.save()
        .then(item => {
