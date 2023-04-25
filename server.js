@@ -167,6 +167,10 @@ app.get('/account', async (req, res) => {
     }
 });
 
+//Showing Schedule page
+app.get('/appointments', (req, res) => {
+    res.redirect('/homepage');
+});
 
 // Route to handle appointment requests
 app.post('/appointments', (req, res) => {
