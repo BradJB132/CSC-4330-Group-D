@@ -117,10 +117,10 @@ app.get('/logout', function(req, res) {
 app.get('/homepage', async (req, res) => {
   try {
     const emailGet = req.cookies.email;
-    const tutors = await User.findOne(emailGet);
-    const firstName = tutors.firstName;
-    const lastName = tutors.lastName;
-    const email = tutors.email;
+    const user = await User.findOne(emailGet);
+    const firstName = user.firstName;
+    const lastName = user.lastName;
+    const email = user.email;
     res.render('Homepage', { firstName, lastName, email });
   } catch (error) {
     res.status(400).json({ error });
