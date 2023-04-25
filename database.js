@@ -114,7 +114,7 @@ async function requestAppointment(student, tutorID, subject, time){
   }
 }
 
-function acceptAppointment(student, tutorID, subject, time){
+async function acceptAppointment(student, tutorID, subject, time){
   try{
     await Tutor.findOneAndUpdate(
       {_id: tutorID},
@@ -127,7 +127,7 @@ function acceptAppointment(student, tutorID, subject, time){
   }
 }
 
-function declineAppointment(student, tutorID, time, reason){
+async function declineAppointment(student, tutorID, time, reason){
   try{
     await Tutor.findOneAndUpdate(
       {_id: tutorID},
@@ -144,7 +144,7 @@ function declineAppointment(student, tutorID, time, reason){
   }
 }
 
-function createAppointment(student, tutorID, subject, time){
+async function createAppointment(student, tutorID, subject, time){
   try{
     await Tutor.findOneAndUpdate(
       { _id: tutorID},
@@ -161,7 +161,7 @@ function createAppointment(student, tutorID, subject, time){
   }
 }
 
-function removeAppointment(student, tutorID, subject, time){
+async function removeAppointment(student, tutorID, subject, time){
   try{
     await Tutor.findOneAndUpdate(
       { _id: tutorID},
@@ -178,7 +178,7 @@ function removeAppointment(student, tutorID, subject, time){
   }
 }
 
-function updateAppointment(student, tutorID, time, newTime){
+async function updateAppointment(student, tutorID, time, newTime){
   try{
     await Tutor.findOneAndUpdate(
       { _id: tutorID},
