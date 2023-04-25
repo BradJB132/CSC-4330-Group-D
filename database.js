@@ -45,12 +45,14 @@ const userSchema = new mongoose.Schema({
 
 // define the schema for a student
 const studentSchema = new mongoose.Schema({
+  userInfo: userSchema,
   requests: [String],
   schedule: [String]
 });
 
 // define the schema for a tutor
 const tutorSchema = new mongoose.Schema({
+  userInfo: userSchema,
   requests: [String],
   subjects: [String],
   schedule: [String]
@@ -59,7 +61,7 @@ const tutorSchema = new mongoose.Schema({
 
 //user schema for admin
 const adminSchema = new mongoose.Schema({
-  userInfo: userSchema,
+  userInfo: userSchema
 });
 
 
