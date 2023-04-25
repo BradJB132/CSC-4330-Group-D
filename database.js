@@ -54,7 +54,7 @@ const studentSchema = new mongoose.Schema({
 const tutorSchema = new mongoose.Schema({
   userInfo: userSchema,
   inbox: [String],
-  subjects: [String],
+  subjects: String,
   schedule: [String]
 });
 //CHANGES END HERE
