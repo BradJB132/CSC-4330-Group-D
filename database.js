@@ -34,7 +34,23 @@ const tutorSchema = new mongoose.Schema({
   subjects: String,
   schedule: [String]
 });
-//CHANGES END HERE
+
+const appointmentSchema = new mongoose.Schema({
+  dayTime: {
+    type: Date,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  tutor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Tutor',
+    required: true
+  }
+});
+
 
 //user schema for admin
 const adminSchema = new mongoose.Schema({
@@ -56,7 +72,8 @@ userSchema.discriminator('admin', adminSchema);
 
 // define the User model using the user schema
 const User = mongoose.model('User', userSchema);
-//CHANGES END HERE
+
+const Appointment = mongoose.model('Appointment', appointmentSchema);
 
 // export the Mongoose connection and models
 module.exports = {
@@ -64,6 +81,7 @@ module.exports = {
   User: User,
   Student: Student,
   Tutor: Tutor,
+  Appointment: Appointment,
   Admin, Admin
 };
 
