@@ -116,15 +116,9 @@ app.get('/logout', function(req, res) {
 //Showing homepage with tutors
 app.get('/homepage', async (req, res) => {
   try {
-      
-    const tutors = [
-  { name: 'John Doe', email: 'johndoe@example.com', subject: 'Math' },
-  { name: 'Jane Smith', email: 'janesmith@example.com', subject: 'Science' },
-  { name: 'Bob Johnson', email: 'bobjohnson@example.com', subject: 'English' },
-  // ...more tutors
-   ];
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
+    const tutors = await User.find({ role: 'Tutor'});
     const firstName = user.firstName;
     const lastName = user.lastName;
     const email = user.email;
@@ -132,7 +126,7 @@ app.get('/homepage', async (req, res) => {
     if(role == "Admin")
       res.redirect('/admin');
     else
-      res.render('Homepage', { firstName, lastName, email });
+      res.render('Homepage', { tutors });
   } catch (error) {
     res.status(400).json({ error });
   }

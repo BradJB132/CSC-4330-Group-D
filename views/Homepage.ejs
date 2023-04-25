@@ -65,14 +65,15 @@
   
   </div>
 <br>
+
 <div>
   <% for (var i = 0; i < tutors.length; i++) { %>
-    <div class="card" action = "/homepage">
+    <div class="card">
       <h2><%= tutors[i].firstName %> <%= tutors[i].lastName %></h2>
-      <p><span class="subject">Subject:</span> <%= tutors[i].subject %></p>
       <p><span class="email">Email:</span> <%= tutors[i].email %></p>
     </div>
   <% } %>
 </div>
+
 </body>
 </html> 
