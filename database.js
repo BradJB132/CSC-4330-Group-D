@@ -5,30 +5,6 @@ mongoose.connect('mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.ne
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 
-/* // define the schema for a user
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  password: String,
-  role: String
-});
-
-//user schema for students
-const studentSchema = new mongoose.Schema({
-  userInfo: userSchema,
-  requests: [String],
-  schedule: [String]
-});
-
-//user schema for tutors
-const tutorSchema = new mongoose.Schema({
-  userInfo: userSchema,
-  requests: [String],
-  subjects: [String],
-  schedule: [String]
-}); */
-
 //CHANGES START HERE
 // define the schema for a user
 const userSchema = new mongoose.Schema({
@@ -66,11 +42,6 @@ const adminSchema = new mongoose.Schema({
 });
 
 
-/* // define the User model using the user schema
-const User = mongoose.model('User', userSchema);
-const Student = mongoose.model('Student', studentSchema);
-const Tutor = mongoose.model('Tutor', tutorSchema); */
-
 //CHANGES START HERE
 // create discriminator for student schema
 const Student = mongoose.model('Student', studentSchema);
@@ -100,6 +71,36 @@ let adminButtonItems = [];
 function adminButton(item){
     adminButtonItems.push(item);
 }
+
+
+const scheduleSchema = new Schema({
+  schedule: {
+    appointments: [
+      {
+        dayTime: {
+          type: Date,
+          required: true,
+        },
+        duration: {
+          type: Number,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        reason: {
+          type: String,
+          required: true,
+        },
+        phone: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
+  },
+});
 
 async function requestAppointment(student, tutorID, subject, time){
   try{
