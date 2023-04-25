@@ -177,6 +177,18 @@ app.get('/account', async (req, res) => {
     res.render('Account');
 }); */
 
+
+app.get("/request-appointment, async (req, res) => {
+    try{
+        const emailGet = req.cookies.email;
+        const user = await User.findOne(emailGet);
+        const firstName = user.firstName;
+        const lastName = user.lastName;
+        res.redirect('/homepage');
+        }
+        
+});
+
 //Showing inbox page
 app.get('/inbox', async (req, res) => {
   try{
