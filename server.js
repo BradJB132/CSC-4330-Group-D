@@ -190,10 +190,17 @@ app.post('/appointments', (req, res) => {
     date,
     name,
     tutor: req.body.tutorId,
-
   });
 
-  appointment.save((err, savedAppointment) => {
+  appointment.save()
+       .then(item => {
+         res.send('Appointment created successfully.');
+       })
+        .catch(err => {
+          res.status(500).send('Unable to create appointment.');
+        });
+
+ /* appointment.save((err, savedAppointment) => {
     if (err) {
       res.status(500).send('Unable to create appointment.');
     } else {
@@ -206,7 +213,7 @@ app.post('/appointments', (req, res) => {
         }
       });
     }
-  });
+  }); */
 });
 
 
