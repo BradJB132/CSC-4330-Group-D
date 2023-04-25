@@ -100,7 +100,7 @@ function adminButton(item){
     adminButtonItems.push(item);
 }
 
-function requestAppointment(student, tutorID, subject, time){
+async function requestAppointment(student, tutorID, subject, time){
   try{
     await Tutor.findOneAndUpdate(
       { _id: tutorID},
