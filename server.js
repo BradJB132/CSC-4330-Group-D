@@ -174,7 +174,7 @@ app.get('/appointments', (req, res) => {
 
 // Route to handle appointment requests
 app.post('/appointments', (req, res) => {
-  const { dayTime, name } = req.body;
+  const { dayTime, name, tutorId } = req.body;
 
   // Validate the input data
   if (!dayTime || !name) {
@@ -194,7 +194,7 @@ app.post('/appointments', (req, res) => {
   const appointment = new Appointment();
   appointment.dayTime = date;
   appointment.name = name;
-  appointment.tutor = req.body.tutor[i]._id;
+  appointment.tutor = tutorId;
 
   appointment.save()
        .then(item => {
