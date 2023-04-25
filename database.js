@@ -46,7 +46,6 @@ const userSchema = new mongoose.Schema({
 // define the schema for a student
 const studentSchema = new mongoose.Schema({
   userInfo: userSchema,
-  requests: [String],
   inbox: [String],
   schedule: [String]
 });
@@ -54,7 +53,6 @@ const studentSchema = new mongoose.Schema({
 // define the schema for a tutor
 const tutorSchema = new mongoose.Schema({
   userInfo: userSchema,
-  requests: [String],
   inbox: [String],
   subjects: [String],
   schedule: [String]
@@ -97,8 +95,21 @@ module.exports = {
   Admin, Admin
 };
 
-function requestAppointment(student, tutor, time){
+let adminButtonItems = [];
+function adminButton(item){
+    adminButtonItems.push(item);
+}
 
+function requestAppointment(student, tutorID, subject, time){
+  try{
+    await Tutor.findOneAndUpdate(
+      { _id: tutorID},
+      {$push: {inbox: student + "," + subject + "," + time}},
+      done
+      );
+  }catch (error) {
+    res.status(400).json({ error });
+  }
 }
 
 function acceptAppointment(student, time){
