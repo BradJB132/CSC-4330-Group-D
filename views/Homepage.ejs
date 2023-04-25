@@ -86,5 +86,15 @@ form.example::after {
   </div>
 <br>
 
+<% for (let i = 0; i < tutors.length; i++) { %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= tutors[i].firstName %> <%= tutors[i].lastName %></h5>
+      <p class="card-text">Subject: <%= tutors[i].subject %></p>
+      <p class="card-text">Rate: <%= tutors[i].rate %></p>
+    </div>
+  </div>
+<% } %>
+
 </body>
 </html> 
