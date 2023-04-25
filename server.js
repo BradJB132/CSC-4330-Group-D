@@ -47,7 +47,7 @@ app.post("/signup", (req, res) => {
       var student = new Student(myData, [], []);
       student.save()
         .then(item => {
-          res.render('Homepage');
+          res.redirect('/homepage');
         })
         .catch(err => {
           res.status(400).send("Unable to save to database");
@@ -58,7 +58,7 @@ app.post("/signup", (req, res) => {
       var tutor = new Tutor(myData, [], []);
       tutor.save()
           .then(item => {
-            res.render('Homepage');
+            res.redirect('/homepage');
           })
           .catch(err => {
             res.status(400).send("Unable to save to database");
@@ -69,7 +69,7 @@ app.post("/signup", (req, res) => {
       var admin = new Admin(myData);
       admin.save()
           .then(item => {
-            res.render('Homepage');
+            res.redirect('/homepage');
           })
           .catch(err => {
             res.status(400).send("Unable to save to database");
