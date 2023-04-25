@@ -167,15 +167,35 @@ app.get('/account', async (req, res) => {
     }
 });
 
-//Showing homepage page
-/* app.get('/homepage', (req, res) => {
-    res.render('Homepage');
-}); */
 
-//Showing account page
-/* app.get('/account', (req, res) => {
-    res.render('Account');
-}); */
+// Route to handle appointment requests
+app.post('/appointments', (req, res) => {
+  const { dayTime, name } = req.body;
+
+  // Validate the input data
+  if (!dayTime || !name) {
+    res.status(400).send('All fields are required.');
+    return;
+  }
+
+  // Convert the dayTime string to a Date object
+  const date = new Date(dayTime);
+
+  // Create a new appointment in the database
+  const appointment = new Appointment({
+    date,
+    name,
+    
+  });
+
+  appointment.save((err) => {
+    if (err) {
+      res.status(500).send('Unable to create appointment.');
+    } else {
+      res.send('Appointment created successfully.');
+    }
+  });
+});
 
 
 app.get('/request-appointment', async (req, res) => {
