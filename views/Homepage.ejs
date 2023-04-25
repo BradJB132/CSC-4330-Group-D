@@ -25,6 +25,25 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
   }
+  .card {
+    background-color: lightskyblue;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+  }
+  .card h2 {
+    font-size: 18px;
+    margin-top: 0;
+  }
+  .card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .card .subject {
+    font-weight: bold;
+  }
     
  
   </style>
@@ -47,21 +66,13 @@
   </div>
 <br>
 <div>
-<form method = "post" action= "/homepage">
-  <div>
-    <p>First Name: <%= firstName %> </p>   
-  </div>
-  <br>
-  <div>
-    <p>Last Name: <%= lastName %> </p>  
-  </div>
-  <br>
-  <div>
-    <p>Email: <%= email %></p>
-  </div>
-  <br>
-</form>
+  <% for (var i = 0; i < tutors.length; i++) { %>
+    <div class="card" action = "/homepage">
+      <h2><%= tutors[i].firstName %> <%= tutors[i].lastName %></h2>
+      <p><span class="subject">Subject:</span> <%= tutors[i].subject %></p>
+      <p><span class="email">Email:</span> <%= tutors[i].email %></p>
+    </div>
+  <% } %>
 </div>
-
 </body>
 </html> 
