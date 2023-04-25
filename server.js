@@ -229,6 +229,7 @@ app.get('/inbox', async (req, res) => {
     }
     else{
       const messages = await Appointment.find({_id: user._id});
+      console.log(messages);
       res.render('TutorInbox', { messages });
     }
   }
