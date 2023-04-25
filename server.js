@@ -186,6 +186,9 @@ app.get('/request-appointment', async (req, res) => {
         const lastName = user.lastName;
         res.redirect('/homepage');
         }
+    catch(err){
+      console.log(err);
+    }
         
 });
 
