@@ -116,13 +116,6 @@ app.get('/logout', function(req, res) {
 //Showing homepage with tutors
 app.get('/homepage', async (req, res) => {
   try {
-      
-    const tutors = [
-  { name: 'John Doe', email: 'johndoe@example.com', subject: 'Math' },
-  { name: 'Jane Smith', email: 'janesmith@example.com', subject: 'Science' },
-  { name: 'Bob Johnson', email: 'bobjohnson@example.com', subject: 'English' },
-  // ...more tutors
-   ];
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
     const firstName = user.firstName;
