@@ -73,10 +73,8 @@
       <p><span class="email">Email:</span> <%= tutors[i].email %></p>
       <p><span class="subjects">Subject:</span> <%= tutors[i].subjects %></p>
       <form action="/request-appointment" method="POST">
-      <button onclick="requestAppointment('<%= studentName %>', '<%= tutors[i]._id %>', '<%= tutors[i].subjects %>', '<%= appointmentTime %>')">Request Appointment</button>
-     </div>
       <input type="date" id="date">
-      
+      <button onclick="requestAppointment('<%= studentName %>', '<%= tutors[i]._id %>', '<%= tutors[i].subjects %>', '<%= appointmentTime %>',document.getElementById('date').value)">Request Appointment</button>
     </form>
     </div>
   <% } %>
