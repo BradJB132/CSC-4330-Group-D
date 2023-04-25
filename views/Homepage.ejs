@@ -75,7 +75,7 @@
       <form action="/request-appointment" method="POST">
         <input type="hidden" name="student">
         <input type="hidden" name="time" >
-        <button onclick="requestAppointment('<%= req.cookies.email %>', '<%= tutors[i]._id %>', '<%= tutors[i].subjects %>', '<%= appointmentTime %>')">Request Appointment</button>
+        <button onclick="requestAppointment('<%= emailGet %>', '<%= tutors[i]._id %>', '<%= tutors[i].subjects %>', '<%= appointmentTime %>')">Request Appointment</button>
       </form>
     </div>
   <% } %>
