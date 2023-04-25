@@ -178,7 +178,7 @@ app.get('/account', async (req, res) => {
 }); */
 
 
-app.get("/request-appointment, async (req, res) => {
+app.get('/request-appointment', async (req, res) => {
     try{
         const emailGet = req.cookies.email;
         const user = await User.findOne(emailGet);
