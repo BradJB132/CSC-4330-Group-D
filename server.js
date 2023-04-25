@@ -118,6 +118,7 @@ app.get('/homepage', async (req, res) => {
   try {
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
+    const tutors = await User.find({ role: 'Tutor'});
     const firstName = user.firstName;
     const lastName = user.lastName;
     const email = user.email;
@@ -125,7 +126,7 @@ app.get('/homepage', async (req, res) => {
     if(role == "Admin")
       res.redirect('/admin');
     else
-      res.render('Homepage', { firstName, lastName, email });
+      res.render('Homepage', { tutors });
   } catch (error) {
     res.status(400).json({ error });
   }
