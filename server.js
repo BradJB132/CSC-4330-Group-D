@@ -122,6 +122,7 @@ app.get('/homepage', async (req, res) => {
     const firstName = user.firstName;
     const lastName = user.lastName;
     const email = user.email;
+    const subjects = user.subjects;
     const role = user.role;
     if(role == "Admin")
       res.redirect('/admin');
