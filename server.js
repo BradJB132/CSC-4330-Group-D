@@ -122,7 +122,7 @@ app.get('/homepage', async (req, res) => {
     const lastName = user.lastName;
     const email = user.email;
     const role = user.role;
-    if(role == 'Admin')
+    if(role == "Admin")
       res.render('Admin', { firstName, lastName, email });
     else
       res.render('Homepage', { firstName, lastName, email });
