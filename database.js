@@ -47,7 +47,6 @@ const appointmentSchema = new mongoose.Schema({
   },
   tutor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Tutor',
     required: true
   }
 });
