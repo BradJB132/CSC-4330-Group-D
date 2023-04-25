@@ -32,7 +32,8 @@ const tutorSchema = new mongoose.Schema({
   userInfo: userSchema,
   inbox: [String],
   subjects: String,
-  schedule: [String]
+  schedule: [String],
+  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }]
 });
 
 const appointmentSchema = new mongoose.Schema({
