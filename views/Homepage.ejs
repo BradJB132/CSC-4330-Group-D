@@ -74,6 +74,7 @@
       <p><span class="subjects">Subject:</span> <%= tutors[i].subjects %></p>
       <form action="/request-appointment" method="POST">
       <input type="hidden" name="tutorId" value="<%= tutors[i].id %>">
+      <input type="date" id="date">
       <button type="submit">Request Appointment</button>
     </form>
     </div>
