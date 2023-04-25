@@ -79,11 +79,14 @@ userSchema.discriminator('student', studentSchema);
 const Tutor = mongoose.model('Tutor', tutorSchema);
 userSchema.discriminator('tutor', tutorSchema);
 
+const Admin = mongoose.model('Admin', adminSchema);
+userSchema.discriminator('admin', adminSchema);
+
 // define the User model using the user schema
 const User = mongoose.model('User', userSchema);
 //CHANGES END HERE
 
-const Admin = mongoose.model('Admin', adminSchema);
+
 
 // export the Mongoose connection and models
 module.exports = {
@@ -91,6 +94,5 @@ module.exports = {
   User: User,
   Student: Student,
   Tutor: Tutor,
-  Admin, Admin,
- 
+  Admin, Admin
 };
