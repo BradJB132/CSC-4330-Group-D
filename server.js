@@ -193,7 +193,7 @@ app.post('/appointments', (req, res) => {
 
   appointment.save()
        .then(item => {
-         res.redirect('/schedule')
+         res.redirect('/navSchedule');
        })
         .catch(err => {
           console.log(err);
@@ -240,6 +240,30 @@ app.get('/schedule', (req, res) => {
 //Showing Signup form
 app.get('/signupform', (req, res) => {
     res.render('SignupForm');
+});
+
+app.get('/navHomepage', (req, res) => {
+  res.redirect('/homepage');
+});
+
+app.get('/navAccount', (req, res) => {
+    res.redirect('/account');
+});
+
+app.get('/navInbox', (req, res) => {
+    res.redirect('/inbox');
+});
+
+app.get('/navSchedule', (req, res) => {
+    res.redirect('/schedule');
+});
+
+app.get('/navSignup', (req, res) => {
+    res.redirect('/signupform');
+});
+
+app.get('/navIndex', (req, res) => {
+    res.redirect('/');
 });
 
 // start the server
