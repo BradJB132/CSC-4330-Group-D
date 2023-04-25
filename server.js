@@ -173,7 +173,7 @@ app.get('/appointments', (req, res) => {
 });
 
 // Route to handle appointment requests
-app.post('/appointments', (req, res) => {
+app.post('/appointments', async (req, res) => {
   const { dayTime, tutorId } = req.body;
 
   // Validate the input data
@@ -186,7 +186,7 @@ app.post('/appointments', (req, res) => {
   const date = new Date(dayTime);
 
   const email = req.cookies.email;
-  const user = User.findOne(email);
+  const user = await User.findOne(email);
   const name = user.firstName + " " + user.lastName;
   
   const appointment = new Appointment();
