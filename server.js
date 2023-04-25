@@ -144,14 +144,14 @@ app.get('/account', async (req, res) => {
 });
 
 //Showing homepage page
-app.get('/homepage', (req, res) => {
+/* app.get('/homepage', (req, res) => {
     res.render('Homepage');
-});
+}); */
 
 //Showing account page
-app.get('/account', (req, res) => {
+/* app.get('/account', (req, res) => {
     res.render('Account');
-});
+}); */
 
 //Showing inbox page
 app.get('/inbox', (req, res) => {
