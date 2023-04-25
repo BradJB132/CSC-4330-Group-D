@@ -177,7 +177,7 @@ app.post('/appointments', (req, res) => {
   const { dayTime, tutorId } = req.body;
 
   // Validate the input data
-  if (!dayTime || !name) {
+  if (!dayTime) {
     res.status(400).send('All fields are required.');
     return;
   }
