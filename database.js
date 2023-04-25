@@ -73,7 +73,7 @@ function adminButton(item){
 }
 
 
-const scheduleSchema = new Schema({
+const scheduleSchema = new mongoose.Schema({
   schedule: {
     appointments: [
       {
