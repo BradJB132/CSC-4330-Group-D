@@ -55,7 +55,7 @@ app.post("/signup", (req, res) => {
     }
 
     if(role == "Tutor"){
-      var tutor = new Tutor(myData, [], []);
+      var tutor = new Tutor(myData, subjects, []);
       tutor.save()
           .then(item => {
             res.redirect('/homepage');
