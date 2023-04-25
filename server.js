@@ -197,6 +197,7 @@ app.post('/appointments', (req, res) => {
          res.send('Appointment created successfully.');
        })
         .catch(err => {
+          console.log(err);
           res.status(500).send('Unable to create appointment.');
         });
 
