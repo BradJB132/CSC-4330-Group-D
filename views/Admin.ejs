@@ -1,0 +1,64 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSC 4330 Group D</title>
+  <style>
+     nav {
+      padding: 5px;
+      text-align: right;
+      font-size: 15px;
+      color: black;
+    }
+  .headerBox {
+	background-color: lightskyblue;
+	padding: 20px;
+	height: 120px;
+	font-size: 20px;
+	color: black;
+	position: relative;
+  }
+  .pageTitle{
+	position: absolute;
+    left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+  }
+
+
+  </style>
+</head>
+<body>
+    <nav>
+        <a href="/navAccount">Account</a>
+	    <a href="/logout">Logout</a>
+    </nav>
+  <div class = "headerBox">
+
+    <img src="TutorCenterLogo.png" width="80" height="80" style="float:left">
+	<div class = "pageTitle">
+		<h1>Admin Homepage</h1>
+	</div>
+
+  </div>
+<br>
+<div>
+<form method = "post" action= "/homepage">
+  <div>
+    <p>First Name: <%= firstName %> </p>   
+  </div>
+  <br>
+  <div>
+    <p>Last Name: <%= lastName %> </p>  
+  </div>
+  <br>
+  <div>
+    <p>Email: <%= email %></p>
+  </div>
+  <br>
+</form>
+</div>
+
+</body>
+</html> 

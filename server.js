@@ -121,7 +121,11 @@ app.get('/homepage', async (req, res) => {
     const firstName = user.firstName;
     const lastName = user.lastName;
     const email = user.email;
-    res.render('Homepage', { firstName, lastName, email });
+    const role = user.role;
+    if(role == 'Admin')
+      res.render('Admin', { firstName, lastName, email });
+    else
+      res.render('Homepage', { firstName, lastName, email });
   } catch (error) {
     res.status(400).json({ error });
   }
