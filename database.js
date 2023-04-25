@@ -113,23 +113,94 @@ async function requestAppointment(student, tutorID, subject, time){
   }
 }
 
-function acceptAppointment(student, time){
-
+function acceptAppointment(student, tutorID, subject, time){
+  try{
+    await Tutor.findOneAndUpdate(
+      {_id: tutorID},
+      {$pop: {inbox: student + "," + subject + "," + time}},
+      done
+    );
+    createAppointment(student, tutorID, subject, time);
+  }catch (error) {
+    res.status(400).json({ error });
+  }
 }
 
-function declineAppointment(student, time, reason){
-
+function declineAppointment(student, tutorID, time, reason){
+  try{
+    await Tutor.findOneAndUpdate(
+      {_id: tutorID},
+      {$pop: {inbox: student + "," + subject + "," + time}},
+      done
+      );
+    await Student.findOneAndUpdate(
+      {_id: tutorID},
+      {$push: {inbox: tutorID + "," + subject + "," + time + "," + reason}},
+      done
+      );
+  }catch (error) {
+    res.status(400).json({ error });
+  }
 }
 
-function createAppointment(student, tutor, time){
-
+function createAppointment(student, tutorID, subject, time){
+  try{
+    await Tutor.findOneAndUpdate(
+      { _id: tutorID},
+      {$push: {schedule: student + "," + subject + "," + time}},
+      done
+      );
+    await Student.findOneAndUpdate(
+      { email: student},
+      {$push: {schedule: tutorID + "," + subject + "," + time}},
+      done
+      );
+  }catch (error) {
+    res.status(400).json({ error });
+  }
 }
 
-function removeAppointment(student, tutor, time){
-
+function removeAppointment(student, tutorID, subject, time){
+  try{
+    await Tutor.findOneAndUpdate(
+      { _id: tutorID},
+      {$pop: {schedule: student + "," + subject + "," + time}},
+      done
+      );
+    await Student.findOneAndUpdate(
+      { email: student},
+      {$pop: {schedule: tutorID + "," + subject + "," + time}},
+      done
+      );
+  }catch{
+    res.status(400).json({ error });
+  }
 }
 
-function updateAppointment(student, tutor, time, newTime){
-
+function updateAppointment(student, tutorID, time, newTime){
+  try{
+    await Tutor.findOneAndUpdate(
+      { _id: tutorID},
+      {$pop: {schedule: student + "," + subject + "," + time}},
+      done
+      );
+    await Student.findOneAndUpdate(
+      { email: student},
+      {$pop: {schedule: tutorID + "," + subject + "," + time}},
+      done
+      );
+    await Tutor.findOneAndUpdate(
+      { _id: tutorID},
+      {$pop: {schedule: student + "," + subject + "," + newTime}},
+      done
+      );
+    await Student.findOneAndUpdate(
+      { email: student},
+      {$pop: {schedule: tutorID + "," + subject + "," + newTime}},
+      done
+      );
+  }catch{
+    res.status(400).json({ error });
+  }
 }
 
