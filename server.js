@@ -185,12 +185,6 @@ app.post('/appointments', (req, res) => {
   // Convert the dayTime string to a Date object
   const date = new Date(dayTime);
 
-  // Create a new appointment in the database
-   /*const appointment = new Appointment({
-    date,
-    name,
-    tutor: req.body.tutorId,
-  }); */
   const appointment = new Appointment();
   appointment.dayTime = date;
   appointment.name = name;
@@ -204,21 +198,6 @@ app.post('/appointments', (req, res) => {
           console.log(err);
           res.status(500).send('Unable to create appointment.');
         });
-
- /* appointment.save((err, savedAppointment) => {
-    if (err) {
-      res.status(500).send('Unable to create appointment.');
-    } else {
-      // save appointment to tutor requests
-      Tutor.findByIdAndUpdate(req.body.tutorId, { $push: { requests: savedAppointment._id } }, (err) => {
-        if (err) {
-          res.status(500).send('Unable to update tutor requests.');
-        } else {
-          res.send('Appointment created successfully.');
-        }
-      });
-    }
-  }); */
 });
 
 
