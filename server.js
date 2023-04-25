@@ -185,7 +185,8 @@ app.post('/appointments', (req, res) => {
   // Convert the dayTime string to a Date object
   const date = new Date(dayTime);
 
-  const user = User.findOne(req.cookies.email);
+  const email = req.cookies.email;
+  const user = User.findOne(email);
   const name = user.firstName + " " + user.lastName;
   
   const appointment = new Appointment();
