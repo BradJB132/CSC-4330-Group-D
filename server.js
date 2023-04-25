@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 //route for handling signup requests
 app.post("/signup", (req, res) => {
-  const { firstName, lastName, email, password, role } = req.body;
+  const { firstName, lastName, email, password, role, subjects } = req.body;
   // check if the email address ends with .edu
   if (!email.endsWith('.edu')) {
     return res.status(400).send('Invalid email address. Email must end with .edu');
@@ -122,7 +122,7 @@ app.get('/homepage', async (req, res) => {
     const firstName = user.firstName;
     const lastName = user.lastName;
     const email = user.email;
-    const subjects = tutors.subjects;
+    const subjects = user.subjects;
     const role = user.role;
     if(role == "Admin")
       res.redirect('/admin');
