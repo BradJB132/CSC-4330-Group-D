@@ -31,6 +31,7 @@
 </head>
 <body>
     <nav>
+        <a href="/navHomepage">Homepage</a>
         <a href="/navAccount">Account</a>
 	    <a href="/logout">Logout</a>
     </nav>
@@ -40,25 +41,25 @@
 	<div class = "pageTitle">
 		<h1>Admin Homepage</h1>
 	</div>
-
   </div>
 <br>
 <div>
-<form method = "post" action= "/homepage">
-  <div>
-    <p>First Name: <%= firstName %> </p>   
-  </div>
-  <br>
-  <div>
-    <p>Last Name: <%= lastName %> </p>  
-  </div>
-  <br>
-  <div>
-    <p>Email: <%= email %></p>
-  </div>
-  <br>
-</form>
 </div>
-
+<div>
+  <h1>Students</h1>
+  <ul>
+    <% for (let i = 0; i < studentNames.length; i++) { %>
+      <li><%= studentNames[i] %></li>
+    <% } %>
+  </ul>
+</div>
+<div>
+  <h1>Tutors</h1>
+  <ul>
+    <% for (let i = 0; i < tutorNames.length; i++) { %>
+      <li><%= tutorNames[i] %></li>
+    <% } %>
+  </ul>
+</div>
 </body>
 </html> 

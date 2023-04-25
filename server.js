@@ -123,9 +123,27 @@ app.get('/homepage', async (req, res) => {
     const email = user.email;
     const role = user.role;
     if(role == "Admin")
-      res.render('Admin', { firstName, lastName, email });
+      res.redirect('/admin');
     else
       res.render('Homepage', { firstName, lastName, email });
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+});
+
+app.get('/admin', async (req, res) => {
+  try{
+    const students = await User.find({ role: 'Student'});
+    const tutors = await User.find({ role: 'Tutor'});
+    const studentNames = [];
+    const tutorNames = [];
+    students.forEach(currentItem => {
+        studentNames.push(currentItem.firstName + " " + currentItem.lastName);
+    });
+    tutors.forEach(currentItem => {
+      tutorNames.push(currentItem.firstName + " " + currentItem.lastName);
+    });
+    res.render('Admin', {studentNames, tutorNames});
   } catch (error) {
     res.status(400).json({ error });
   }
