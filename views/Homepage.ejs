@@ -72,11 +72,14 @@
       <h2><%= tutors[i].firstName %> <%= tutors[i].lastName %></h2>
       <p><span class="email">Email:</span> <%= tutors[i].email %></p>
       <p><span class="subjects">Subject:</span> <%= tutors[i].subjects %></p>
-      <form action="/request-appointment" method="POST">
-        <input type="text" name="student">
-	<input type="date" id="date">
-	<button class="request-appointment-btn" data-tutor-id="<%= tutors[i].firstName %> <%= tutors[i].lastName %>">Request Appointment</button>
-        <!--<button onclick="requestAppointment('<%= emailGet %>', '<%= tutors[i]._id %>', '<%= tutors[i].subjects %>', document.getElementById('date').value)">Request Appointment</button>-->
+      <form action="/appointments" method="post">
+           <label for="dayTime">Date and Time:</label>
+           <input type="datetime-local" id="dayTime" name="dayTime" required>
+
+           <label for="name">Name:</label>
+           <input type="text" id="name" name="name" required>
+
+           <button type="submit">Request Appointment</button>
       </form>
     </div>
   <% } %>
