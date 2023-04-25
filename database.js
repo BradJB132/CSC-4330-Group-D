@@ -5,7 +5,7 @@ mongoose.connect('mongodb+srv://website:webwebweb@tutorcenter.rdnpr1a.mongodb.ne
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 
-// define the schema for a user
+/* // define the schema for a user
 const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
@@ -27,6 +27,32 @@ const tutorSchema = new mongoose.Schema({
   requests: [String],
   subjects: [String],
   schedule: [String]
+}); */
+
+// define the schema for a user
+const userSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  email: String,
+  password: String,
+  role: {
+    type: String,
+    required: true,
+    enum: ['student', 'tutor']
+  }
+});
+
+// define the schema for a student
+const studentSchema = new mongoose.Schema({
+  requests: [String],
+  schedule: [String]
+});
+
+// define the schema for a tutor
+const tutorSchema = new mongoose.Schema({
+  requests: [String],
+  subjects: [String],
+  schedule: [String]
 });
 
 //user schema for admin
@@ -35,10 +61,22 @@ const adminSchema = new mongoose.Schema({
 });
 
 
-// define the User model using the user schema
+/* // define the User model using the user schema
 const User = mongoose.model('User', userSchema);
 const Student = mongoose.model('Student', studentSchema);
+const Tutor = mongoose.model('Tutor', tutorSchema); */
+
+// create discriminator for student schema
+const Student = mongoose.model('Student', studentSchema);
+userSchema.discriminator('student', studentSchema);
+
+// create discriminator for tutor schema
 const Tutor = mongoose.model('Tutor', tutorSchema);
+userSchema.discriminator('tutor', tutorSchema);
+
+// define the User model using the user schema
+const User = mongoose.model('User', userSchema);
+
 const Admin = mongoose.model('Admin', adminSchema);
 
 // export the Mongoose connection and models
