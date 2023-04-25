@@ -110,7 +110,7 @@ app.get('/logout', function(req, res) {
   res.clearCookie('loggedIn');
 
   // redirect to the login page
-  res.render('index');
+  res.redirect('/');
 });
 
 //Showing homepage with tutors
