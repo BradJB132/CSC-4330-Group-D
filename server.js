@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const { connection, User, Student, Tutor, Admin } = require('./database');
+const { connection, User, Student, Tutor, Admin, Appointment } = require('./database');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 
