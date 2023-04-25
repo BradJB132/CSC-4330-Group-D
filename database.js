@@ -73,34 +73,6 @@ function adminButton(item){
 }
 
 
-const scheduleSchema = new mongoose.Schema({
-  schedule: {
-    appointments: [
-      {
-        dayTime: {
-          type: Date,
-          required: true,
-        },
-        duration: {
-          type: Number,
-          required: true,
-        },
-        name: {
-          type: String,
-          required: true,
-        },
-        reason: {
-          type: String,
-          required: true,
-        },
-        phone: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-  },
-});
 
 async function requestAppointment(student, tutorID, subject, time){
   try{
