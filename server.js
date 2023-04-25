@@ -179,7 +179,19 @@ app.get('/account', async (req, res) => {
 
 //Showing inbox page
 app.get('/inbox', (req, res) => {
-    res.render('Inbox');
+  try{
+    const emailGet = req.cookies.email;
+    const user = await User.findOne(emailGet);
+    if(user.role == 'Student'){
+      res.render('StudentInbox');
+    }
+    else{
+      res.render('TutorInbox');
+    }
+  }
+  catch(err){
+    console.log(err);
+  }
 });
 
 //Showing Schedule page
