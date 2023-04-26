@@ -226,7 +226,7 @@ app.get('/inbox', async (req, res) => {
       console.log("messages: " + messages);
       let names = [];
       for(i = 0 ; i < messages.length; i++){
-        let temp = await User.findOne({_id: messages.tutor});
+        let temp = await User.findOne({_id: messages[i].tutor});
         names.push(temp);
       }
       console.log("names: " + names);
