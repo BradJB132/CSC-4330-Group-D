@@ -27,12 +27,12 @@
     background-color: lightskyblue;
     border-radius: 5px;
     box-shadow: 0 2px 2px rgba(0,0,0,0.1);
-    margin: auto;
-    margin-bottom: 1rem;
+    margin: 1rem auto;
     padding: 10px;
     width: 800px;
     height: 50px;
     position: relative;
+   
   }
   #appointText {
   text-align: center;
@@ -77,8 +77,6 @@
   </div>
 <div>
   <h1 id="appointText">Appointments</h1>
-  <br>
-  <ul>
     <% for (let i = 0; i < schedule.length; i++) { %>
     <div class="card">
       <p id="appointName"><%= others[i].firstName + " " + others[i].lastName %></p>
@@ -94,7 +92,6 @@
       <button id="rateButton">Click to Rate</button>
     </div>
     <% } %>
-  </ul>
 
 </div>
 </body>
