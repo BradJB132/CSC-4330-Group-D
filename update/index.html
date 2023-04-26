@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Run Scripts</title>
+  </head>
+  <body>
+    <h1>Click to update the website</h1>
+    <button onclick="runScript()">Update</button>
+    <div id="output"></div>
+    <script>
+      function runScript() {
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = '';
+
+        fetch('/run-script')
+          .then(response => {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let chunks = '';
+
+            return reader.read().then(function processResult(result) {
+              if (result.done) {
+                outputDiv.innerHTML += decoder.decode(new Uint8Array(chunks));
+              } else {
+                chunks += result.value;
+                outputDiv.innerHTML += decoder.decode(new Uint8Array(result.value));
+                return reader.read().then(processResult);
+              }
+            });
+          });
+      }
+    </script>
+    <h1>Click to show website errors</h1>
+    <button onclick="showError()">Show Error</button>
+    <div id="output2"></div>
+    <script>
+      function showError() {
+        const outputDiv = document.getElementById('output2');
+        outputDiv.innerHTML = '';
+
+        fetch('/showError')
+          .then(response => {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let chunks = '';
+
+            return reader.read().then(function processResult(result) {
+              if (result.done) {
+                outputDiv.innerHTML += decoder.decode(new Uint8Array(chunks));
+              } else {
+                chunks += result.value;
+                outputDiv.innerHTML += decoder.decode(new Uint8Array(result.value));
+                return reader.read().then(processResult);
+              }
+            });
+          });
+      }
+    </script>
+  </body>
+</html>
