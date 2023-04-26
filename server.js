@@ -246,8 +246,8 @@ app.get('/schedule', async (req, res) => {
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
     const ID = user._id;
-    const schedule = [];
-    const others = [];
+    let schedule = [];
+    let others = [];
 
     if(user.role == 'Student'){
       schedule = await Appointment.find(
