@@ -208,8 +208,8 @@ app.post('/accept', async (req, res) =>{
   try{
     const ID = req.body.studentId;
     console.log("ID: " + ID);
-    const data = await Appointment.findByIdAndUpdate(
-      ID,
+    const data = await Appointment.findOneAndUpdate(
+      {student: ID},
       {state: "Accepted"}
     );
     console.log("data: " + data);
