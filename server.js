@@ -206,7 +206,7 @@ app.post('/appointments', async (req, res) => {
 
 app.post('/accept', async (req, res) =>{
   try{
-    Appointment.findByIdAndUpdate(
+    await Appointment.findByIdAndUpdate(
       req.body.studentId,
       {$set: {state: "Accepted"}}
     );
