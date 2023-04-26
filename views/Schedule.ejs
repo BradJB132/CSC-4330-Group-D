@@ -61,14 +61,13 @@
 	</div>
   
   </div>
-<p style="text-align: center;">No Upcoming Appointments</p>
 <div>
   <h1 id="appointText">Appointments</h1>
   <br>
   <div class="card">
   <ul>
     <% for (let i = 0; i < schedule.length; i++) { %>
-      <li id="appointDetails"><%= others[i].firstName + " " + others[i].lastName %><br><%= schedule[i].dayTime %><br><button>Click me</button></li>
+      <p id="appointDetails"><%= others[i].firstName + " " + others[i].lastName %><br><%= schedule[i].dayTime %><br><button>Click me</button></p>
     <% } %>
   </ul>
   </div>
