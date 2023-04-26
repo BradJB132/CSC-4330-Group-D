@@ -307,8 +307,8 @@ app.post('/rate', async (req, res) => {
       numRating = temp.numRatings;
       console.log("numRatings1: " + numRating);
       numRating += 1;
-      console.log("rate " + req.body.rate);
-      rating = (rating + req.body.rate) / numRating;
+      let trate = req.body.rate;
+      rating = (double)(parseDouble(rating) + parseInt(trate)) / parseInt(numRating);
       console.log("rating2: " + rating);
       console.log("numRatings2: " + numRating);
       await User.findOneAndUpdate({_id: appointment.tutor}, {rating: rating, numRatings: numRating});
