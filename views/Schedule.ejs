@@ -81,9 +81,9 @@
     <div class="card">
       <p id="appointName"><%= others[i].firstName + " " + others[i].lastName %></p>
       <p id="appointTime"><%= schedule[i].dayTime %></p>
-      <input type="hidden" id="appointId" name="appointId" value="<%= schedule[i]._id %>"></input>
       <div class="ratings">
       <form action="/rate" method="post">
+      <input type="hidden" id="appointId" name="appointId" value="<%= schedule[i]._id %>"></input>
       <label for="roleBox" class="roleBoxText" id="rateSelect">Rate your experience</label>
         <select name="role" class="roleBox">
             <option value=1>1</option>
