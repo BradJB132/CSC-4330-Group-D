@@ -206,10 +206,11 @@ app.post('/appointments', async (req, res) => {
 
 app.post('/accept', async (req, res) =>{
   try{
-    await Appointment.findByIdAndUpdate(
+    const data = await Appointment.findByIdAndUpdate(
       req.body.studentId,
-      {$set: {state: "Accepted"}}
+      {state: "Accepted"}
     );
+    console.log("data: " + data);
     res.redirect('/inbox');
   }catch(err){
     console.log(err);
