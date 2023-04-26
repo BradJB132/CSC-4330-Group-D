@@ -256,7 +256,7 @@ app.get('/schedule', async (req, res) => {
       );
       console.log("schedule :" + schedule);
       for(i = 0; i < schedule.length; i++){
-        others[i] = await User.findOne({_id: schedule.tutor});
+        others[i] = await User.findOne({_id: schedule[i].tutor});
       }
       console.log("others :" + others);
     }
@@ -267,7 +267,7 @@ app.get('/schedule', async (req, res) => {
         );
       console.log("schedule :" + schedule);
       for(i = 0; i < schedule.length; i++){
-        others[i] = await User.findOne({_id: schedule.student});
+        others[i] = await User.findOne({_id: schedule[i].student});
       }
       console.log("others :" + others);
     }
