@@ -78,15 +78,16 @@
 <div>
   <h1 id="appointText">Appointments</h1>
   <br>
-  <div class="card">
   <ul>
     <% for (let i = 0; i < schedule.length; i++) { %>
+    <div class="card">
       <p id="appointName"><%= others[i].firstName + " " + others[i].lastName %></p>
       <p id="appointTime"><%= schedule[i].dayTime %></p>
       <button id="cancelButton">Click me</button>
+    </div>
     <% } %>
   </ul>
-  </div>
+
 </div>
 </body>
 </html> 
