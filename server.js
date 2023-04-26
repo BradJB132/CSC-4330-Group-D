@@ -186,12 +186,12 @@ app.post('/appointments', async (req, res) => {
 app.post('/accept', async (req, res) =>{
   try{
     const ID = req.body.messageId;
-    console.log("ID: " + ID);
+    //console.log("ID: " + ID);
     const data = await Appointment.findOneAndUpdate(
       {_id: ID},
       {state: "Accepted"}
     );
-    console.log("data: " + data);
+    //console.log("data: " + data);
     res.redirect('/inbox');
   }catch(err){
     console.log(err);
@@ -259,26 +259,26 @@ app.get('/schedule', async (req, res) => {
     let others = [];
 
     if(user.role == 'Student'){
-      console.log("Student");
+      //console.log("Student");
       schedule = await Appointment.find(
         {student: ID, state: "Accepted"}
       );
-      console.log("schedule :" + schedule);
+      //console.log("schedule :" + schedule);
       for(i = 0; i < schedule.length; i++){
         others[i] = await User.findOne({_id: schedule[i].tutor});
       }
-      console.log("others :" + others);
+      //console.log("others :" + others);
     }
     else{
-      console.log("Tutor");
+      //console.log("Tutor");
       schedule = await Appointment.find(
         {tutor: ID, state: "Accepted"}
         );
-      console.log("schedule :" + schedule);
+      //console.log("schedule :" + schedule);
       for(i = 0; i < schedule.length; i++){
         others[i] = await User.findOne({_id: schedule[i].student});
       }
-      console.log("others :" + others);
+      //console.log("others :" + others);
     }
     res.render('Schedule', {user, schedule, others});
 
