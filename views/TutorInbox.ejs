@@ -31,7 +31,7 @@
     margin-bottom: 1rem;
     padding: 10px;
     width: 800px;
-    height: 400px;
+    height: 300px;
     position: relative;
   }
   #accept {
@@ -45,6 +45,18 @@
   left: 60%;
   top: 40%;
   transform: translate(-40%, -60%);
+  }
+  #responseText {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -30%);
+  }
+  #response {
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translate(-50%, -25%);
   }
   </style>
 </head>
@@ -80,7 +92,7 @@
        <button type="submit" id="deny">Deny Appointment</button>
        <input type="hidden" id="studentId" name="studentId" value="<%= students[i]._id %>"></input>
            <div class="form-control">
-              <label for="response" class="responseText">Reason for denial</label>
+              <label for="response" id="responseText">Reason for denial</label>
               <textarea
                 name="response"
                 id="response"
