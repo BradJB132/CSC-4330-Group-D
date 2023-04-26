@@ -223,12 +223,16 @@ app.get('/inbox', async (req, res) => {
     }
     else{
       const messages = await Appointment.find({tutor: user._id});
-      const students;
-      messages.forEach(async currentItem => {
+      const students = [];
+      for(i = 0; i < messages.length; i++){
+        students.push(await User.findOne({_id: currentItem.student}));
+      }
+
+      /*messages.forEach(async currentItem => {
         const temp = await User.findOne({_id: currentItem.student});
         console.log(temp);
         students.push(temp);
-      });
+      }); */
       console.log(messages);
       res.render('TutorInbox', { messages, students });
     }
