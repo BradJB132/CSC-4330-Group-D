@@ -47,13 +47,15 @@
     <div class="card">
       <h2><%= students[i].firstName %>  <%= students[i].lastName %></h2>
       <h2><%= messages[i].dayTime %></h2>
-      <input type="hidden" id="studentId" name="studentId" value="<%= students[i]._id %>"></input>
+
       <form action="/accept" method="post">
        <button type="submit" id="accept">Accept Appointment</button>
+       <input type="hidden" id="studentId" name="studentId" value="<%= students[i]._id %>"></input>
 
       </form>
       <form action="/deny" method="post">
        <button type="submit" id="deny">Deny Appointment</button>
+       <input type="hidden" id="studentId" name="studentId" value="<%= students[i]._id %>"></input>
            <div class="form-control">
               <label for="response">Reason for denial</label>
               <textarea
