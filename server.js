@@ -118,6 +118,9 @@ app.get('/homepage', async (req, res) => {
   try {
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
+    if(user.role == 'Tutor')
+      res.redirect('/schedule');
+      break;
     const tutors = await User.find({ role: 'Tutor'});
     const firstName = user.firstName;
     const lastName = user.lastName;
