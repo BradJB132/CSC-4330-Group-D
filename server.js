@@ -226,6 +226,7 @@ app.get('/inbox', async (req, res) => {
       const students = [];
       messages.forEach(async currentItem => {
         const temp = await User.findOne({_id: currentItem.student});
+        console.log(temp);
         students.push(temp);
       });
       console.log(messages);
