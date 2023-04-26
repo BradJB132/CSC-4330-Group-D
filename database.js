@@ -50,6 +50,10 @@ const appointmentSchema = new mongoose.Schema({
   state: {
     type: String,
     required: true
+  },
+  message: {
+    type: String,
+    required: false
   }
 });
 

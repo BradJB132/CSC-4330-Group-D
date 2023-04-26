@@ -222,11 +222,15 @@ app.post('/accept', async (req, res) =>{
 app.post('/deny', async (req, res) =>{
   try{
     const ID = req.body.messageId;
-    await Appointment.findByIdAndDelete(ID);
-
-
-
-
+    await Appointment.findOneAndUpdate(
+      {_id: ID},
+      {state: "Declined"}
+      );
+    await Appointment.findOneAndUpdate(
+      {_id: ID},
+      {message: req.body.response}
+      );
+    res.redirect('/inbox');
   }catch(err){
     console.log(err);
   }
