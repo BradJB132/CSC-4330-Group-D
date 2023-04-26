@@ -206,10 +206,10 @@ app.post('/appointments', async (req, res) => {
 
 app.post('/accept', async (req, res) =>{
   try{
-    const ID = req.body.studentId;
+    const ID = req.body.messageId;
     console.log("ID: " + ID);
     const data = await Appointment.findOneAndUpdate(
-      {student: ID},
+      {_id: ID},
       {state: "Accepted"}
     );
     console.log("data: " + data);
@@ -217,7 +217,19 @@ app.post('/accept', async (req, res) =>{
   }catch(err){
     console.log(err);
   }
+});
 
+app.post('/deny', async (req, res) =>{
+  try{
+    const ID = req.body.messageId;
+    await Appointment.findByIdAndDelete(ID);
+
+
+
+
+  }catch(err){
+    console.log(err);
+  }
 });
 
 //Showing inbox page
