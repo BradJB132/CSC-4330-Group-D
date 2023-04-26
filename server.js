@@ -320,7 +320,7 @@ app.post('/rate', async (req, res) => {
       await User.findOneAndUpdate({_id: appointment.student}, {rating: rating, numRatings: numRating});
     }
     await Appointment.deleteOne({_id: ID});
-    res.redirect('/schedule');
+    res.redirect('/homepage');
   }catch(err){
     console.log(err);
   }
