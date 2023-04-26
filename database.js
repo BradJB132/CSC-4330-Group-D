@@ -20,11 +20,13 @@ const userSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
-    required: false
+    required: true,
+    default: 0
   },
   numRatings: {
     type: Number,
-    required: false
+    required: true,
+    default: 0
   }
 });
 
