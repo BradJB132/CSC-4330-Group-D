@@ -208,7 +208,7 @@ app.post('/accept', async (req, res) =>{
   try{
     Appointment.findByIdAndUpdate(
       req.body.studentId,
-      {state: "Accepted"}
+      {$set: {state: "Accepted"}}
     );
     res.redirect('/inbox');
   }catch(err){
