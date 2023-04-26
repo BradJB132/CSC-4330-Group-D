@@ -301,9 +301,13 @@ app.post('/rate', async (req, res) => {
     let numRatings = 0;
     if(user.role == "Student"){
       rating = await User.findOne({_id: appointment.tutor}).rating;
+      console.log("rating1: " + rating);
       numRating = await User.findOne({_id: appointment.tutor}).numRatings;
+      console.log("numRatings1: " + numRating);
       numRating += 1;
       rating = (rating + req.body.rateSelect) / numRating;
+      console.log("rating2: " + rating);
+      console.log("numRatings2: " + numRating);
       await User.findOneAndUpdate({_id: appointment.tutor}, {rating: rating, numRatings: numRating});
     }else{
       rating = await User.findOne({_id: appointment.student}).rating;
