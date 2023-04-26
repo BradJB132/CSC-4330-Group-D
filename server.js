@@ -241,7 +241,7 @@ app.get('/inbox', async (req, res) => {
 });
 
 //Showing Schedule page
-app.get('/schedule', (req, res) => {
+app.get('/schedule', async (req, res) => {
   try{
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
