@@ -20,18 +20,6 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-// define the schema for a student
-const studentSchema = new mongoose.Schema({
-  userInfo: userSchema,
-  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }]
-});
-
-// define the schema for a tutor
-const tutorSchema = new mongoose.Schema({
-  userInfo: userSchema,
-  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }]
-});
-
 const appointmentSchema = new mongoose.Schema({
   dayTime: {
     type: Date,
@@ -70,13 +58,6 @@ const adminSchema = new mongoose.Schema({
 
 
 //CHANGES START HERE
-// create discriminator for student schema
-const Student = mongoose.model('Student', studentSchema);
-userSchema.discriminator('student', studentSchema);
-
-// create discriminator for tutor schema
-const Tutor = mongoose.model('Tutor', tutorSchema);
-userSchema.discriminator('tutor', tutorSchema);
 
 const Admin = mongoose.model('Admin', adminSchema);
 userSchema.discriminator('admin', adminSchema);
@@ -90,8 +71,6 @@ const Appointment = mongoose.model('Appointment', appointmentSchema);
 module.exports = {
   connection: mongoose.connection,
   User: User,
-  Student: Student,
-  Tutor: Tutor,
   Appointment: Appointment,
   Admin, Admin
 };

@@ -42,6 +42,13 @@
   
   </div>
 <p style="text-align: center;">No Upcoming Appointments</p>
-
+<div>
+  <h1>Tutors</h1>
+  <ul>
+    <% for (let i = 0; i < tutors.length; i++) { %>
+      <li><%= appointments[i] + " " + tutors[i].lastName %><br><button>Click me</button></li>
+    <% } %>
+  </ul>
+</div>
 </body>
 </html> 

@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const { connection, User, Student, Tutor, Admin, Appointment } = require('./database');
+const { connection, User, Admin, Appointment } = require('./database');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 
@@ -43,28 +43,6 @@ app.post("/signup", (req, res) => {
             res.status(400).send("Unable to save to database");
         });
 
-    if(role == "Student"){
-      var student = new Student(myData, [], []);
-      student.save()
-        .then(item => {
-          res.redirect('/homepage');
-        })
-        .catch(err => {
-          res.status(400).send("Unable to save to database");
-        });
-    }
-
-    if(role == "Tutor"){
-      var tutor = new Tutor(myData, subjects, []);
-      tutor.save()
-          .then(item => {
-            res.redirect('/homepage');
-          })
-          .catch(err => {
-            res.status(400).send("Unable to save to database");
-          });
-    }
-
     if(role == "Admin"){
       var admin = new Admin(myData);
       admin.save()
@@ -75,7 +53,6 @@ app.post("/signup", (req, res) => {
             res.status(400).send("Unable to save to database");
           });
     }
-
 });
 
 // route for handling login requests
@@ -265,8 +242,43 @@ app.get('/inbox', async (req, res) => {
 
 //Showing Schedule page
 app.get('/schedule', (req, res) => {
-    res.render('Schedule');
+  try{
+    const emailGet = req.cookies.email;
+    const user = await User.findOne(emailGet);
+    const ID = user._id;
+    const schedule = [];
+    const others = [];
+
+    if(user.role == 'Student'){
+      schedule = await Appointment.find(
+        {student: ID, state: "Accepted"}
+      );
+      for(i = 0; i < schedule.length; i++){
+        others[i] = await User.findOne({_id: schedule.tutor});
+      }
+    }
+    else{
+      schedule = await Appointment.find(
+        {tutor: ID, state: "Accepted"}
+        );
+      for(i = 0; i < schedule.length; i++){
+        others[i] = await User.findOne({_id: schedule.student});
+      }
+    }
+    res.render('Schedule', {user, schedule, others});
+
+  }catch(err){
+    console.log(err);
+  }
 });
+
+
+
+
+
+
+
+
 
 //Showing Signup form
 app.get('/signupform', (req, res) => {
