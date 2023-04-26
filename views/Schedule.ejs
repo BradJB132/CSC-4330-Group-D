@@ -83,6 +83,7 @@
       <p id="appointTime"><%= schedule[i].dayTime %></p>
       <input type="hidden" id="appointId" name="appointId" value="<%= schedule[i]._id %>"></input>
       <div class="ratings">
+      <form action="/rate" method="post">
       <label for="roleBox" class="roleBoxText" id="rateSelect">Rate your experience</label>
         <select name="role" class="roleBox">
             <option value=1>1</option>
@@ -91,7 +92,8 @@
             <option value=4>4</option>
             <option value=5>5</option>
         </select>
-      <button id="rateButton" onclick='/rate'>Click to Rate</button>
+      <button type="submit" id="rateButton">Click to Rate</button>
+      </form>
       </div>
     </div>
     <% } %>
