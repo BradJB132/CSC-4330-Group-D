@@ -34,7 +34,7 @@ app.post("/signup", (req, res) => {
   if (!email.endsWith('.edu')) {
     return res.status(400).send('Invalid email address. Email must end with .edu');
   }
-    var myData = new User(req.body);
+    var myData = new User(req.body, 0, 0);
     myData.save()
         .then(item => {
             res.cookie('email', { email });

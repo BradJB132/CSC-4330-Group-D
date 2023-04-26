@@ -83,7 +83,15 @@
     <div class="card">
       <p id="appointName"><%= others[i].firstName + " " + others[i].lastName %></p>
       <p id="appointTime"><%= schedule[i].dayTime %></p>
-      <button id="cancelButton">Click me</button>
+      <label for="roleBox" class="roleBoxText" id="rateSelect">Rate your experience</label>
+        <select name="role" class="roleBox">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+        </select>
+      <button id="rateButton">Click to Rate</button>
     </div>
     <% } %>
   </ul>

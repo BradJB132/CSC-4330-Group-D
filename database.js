@@ -17,6 +17,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: ['Student', 'Tutor', 'Admin']
+  },
+  rating: {
+    type: double,
+    required: false
+  },
+  numRatings: {
+    type: int,
+    required: false
   }
 });
 
