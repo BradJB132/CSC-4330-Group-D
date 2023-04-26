@@ -289,6 +289,7 @@ app.get('/schedule', async (req, res) => {
 
 app.post('/rate', async (req, res) => {
   try{
+    console.log("i run");
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
     const ID = req.body.appointId;
