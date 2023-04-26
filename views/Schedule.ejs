@@ -37,11 +37,25 @@
   #appointText {
   text-align: center;
   }
-  #appointDetails {
+  #appointName {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%, -85%);
+  font-weight: bold;
+  }
+  #appointName {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  }
+  #cancelButton {
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -20%);
+  font-weight: bold;
   }
   </style>
 </head>
@@ -67,7 +81,9 @@
   <div class="card">
   <ul>
     <% for (let i = 0; i < schedule.length; i++) { %>
-      <p id="appointDetails"><%= others[i].firstName + " " + others[i].lastName %><br><%= schedule[i].dayTime %><br><button>Click me</button></p>
+      <p id="appointName"><%= others[i].firstName + " " + others[i].lastName %></p>
+      <p id="appointTime"><%= schedule[i].dayTime %></p>
+      <button id="cancelButton">Click me</button>
     <% } %>
   </ul>
   </div>
