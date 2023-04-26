@@ -46,7 +46,7 @@
   <h1>Appointments</h1>
   <ul>
     <% for (let i = 0; i < schedule.length; i++) { %>
-      <li><%= user.firstName + " " + user.lastName + " " + others[i].firstName + " " + others[i].lastName + " " + schedule[i].dayTime %><br><button>Click me</button></li>
+      <li><%= others[i].firstName + " " + others[i].lastName %><br><%= schedule[i].dayTime %><br><button>Click me</button></li>
     <% } %>
   </ul>
 </div>
