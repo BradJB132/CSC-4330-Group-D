@@ -250,20 +250,26 @@ app.get('/schedule', async (req, res) => {
     let others = [];
 
     if(user.role == 'Student'){
+      console.log("Student");
       schedule = await Appointment.find(
         {student: ID, state: "Accepted"}
       );
+      console.log("schedule :" + schedule);
       for(i = 0; i < schedule.length; i++){
         others[i] = await User.findOne({_id: schedule.tutor});
       }
+      console.log("others :" + others);
     }
     else{
+      console.log("Tutor");
       schedule = await Appointment.find(
         {tutor: ID, state: "Accepted"}
         );
+      console.log("schedule :" + schedule);
       for(i = 0; i < schedule.length; i++){
         others[i] = await User.findOne({_id: schedule.student});
       }
+      console.log("others :" + others);
     }
     res.render('Schedule', {user, schedule, others});
 
