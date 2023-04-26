@@ -23,6 +23,42 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
   }
+  .card {
+    background-color: lightskyblue;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 10px;
+    width: 800px;
+    height: 350px;
+    position: relative;
+  }
+  #accept {
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  transform: translate(-60%, -60%);
+  }
+  #deny {
+  position: absolute;
+  left: 60%;
+  top: 40%;
+  transform: translate(-40%, -60%);
+  }
+  #responseText {
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  }
+  #response {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -30%);
+  }
   </style>
 </head>
 <body>
@@ -57,7 +93,7 @@
        <button type="submit" id="deny">Deny Appointment</button>
        <input type="hidden" id="messageId" name="messageId" value="<%= messages[i]._id %>"></input>
            <div class="form-control">
-              <label for="response">Reason for denial</label>
+              <label for="response" id="responseText">Reason for denial</label>
               <textarea
                 name="response"
                 id="response"
