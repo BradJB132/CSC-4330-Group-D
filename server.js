@@ -206,7 +206,11 @@ app.post('/appointments', async (req, res) => {
 
 app.post('/accept', async (req, res) =>{
   try{
-
+    Appointment.fineByIdAndUpdate(
+      req.body.studentId,
+      {state: "Accepted"}
+    );
+    res.redirect('/inbox');
   }catch(err){
     console.log(err);
   }
@@ -229,11 +233,6 @@ app.get('/inbox', async (req, res) => {
         students.push(temp);
       }
 
-      /*messages.forEach(async currentItem => {
-        const temp = await User.findOne({_id: currentItem.student});
-        console.log(temp);
-        students.push(temp);
-      }); */
       console.log(messages);
       res.render('TutorInbox', { messages, students });
     }
