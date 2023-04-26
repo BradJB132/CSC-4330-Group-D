@@ -86,6 +86,7 @@ try{
 app.get('/logout', function(req, res) {
   // clear the "loggedIn" cookie
   res.clearCookie('loggedIn');
+  res.clearCookie('email');
 
   // redirect to the login page
   res.redirect('/');
