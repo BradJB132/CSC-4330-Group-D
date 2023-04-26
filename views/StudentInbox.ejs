@@ -23,6 +23,36 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
   }
+  .card {
+    background-color: lightskyblue;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    margin: 1rem auto;
+    padding: 10px;
+    width: 800px;
+    height: 50px;
+    position: relative;
+   
+  }
+  #appointName {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -90%);
+  font-weight: bold;
+  }
+  #appointTime {
+  position: absolute;
+  left: 50%;
+  top: 33%;
+  transform: translate(-50%, -67%);
+  }
+  #appointMess {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  }
   </style>
 </head>
 <body>
@@ -41,12 +71,12 @@
 	</div>
   
   </div>
-<p style="text-align: center;">No Messages</p>
 <div>
       <% for (var i = 0; i < messages.length; i++) { %>
       <div class="card">
-      <h2><%= names[i].firstName %>  <%= names[i].lastName %></h2>
-      <h2><%= messages[i].dayTime %> <%= messages[i].message %></h2>
+      <h2 id="appointName"><%= names[i].firstName %>  <%= names[i].lastName %></h2>
+      <h2 id="appointTime"><%= messages[i].dayTime %></h2> 
+      <h4 id="appointMess"><%= messages[i].message %></h4>
       </div>
    <% } %>
 </div>
