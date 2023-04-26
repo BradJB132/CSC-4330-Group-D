@@ -221,7 +221,13 @@ app.get('/inbox', async (req, res) => {
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
     if(user.role == 'Student'){
-      res.render('StudentInbox');
+      const messages = await Appointment.find({student: user._id, State: "Declined"})
+      let names = [];
+      for(i = 0 ; i < messages.length; i++){
+        let temp = await User.findOne(_id = messages.tutor);
+        names.push(temp);
+      }
+      res.render('StudentInbox', {messages, names});
     }
     else{
       const messages = await Appointment.find({tutor: user._id});
