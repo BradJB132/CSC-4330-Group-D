@@ -292,8 +292,10 @@ app.post('/rate', async (req, res) => {
     console.log("i run");
     const emailGet = req.cookies.email;
     const user = await User.findOne(emailGet);
+    console.log("user: " + user);
     const ID = req.body.appointId;
     const appointment = await Appointment.findOne({_id: ID});
+    console.log("appointment: " + appointment);
     let rating = 0;
     let numRatings = 0;
     if(user.role == "Student"){
