@@ -187,11 +187,10 @@ app.post('/appointments', async (req, res) => {
 
   const email = req.cookies.email;
   const user = await User.findOne(email);
-  const name = user.firstName + " " + user.lastName;
   
   const appointment = new Appointment();
   appointment.dayTime = date;
-  appointment.name = name;
+  appointment.student = user._id;
   appointment.tutor = tutorId;
   appointment.state = "Pending";
 
@@ -205,18 +204,13 @@ app.post('/appointments', async (req, res) => {
         });
 });
 
+app.post('/accept', async (req, res) =>{
+  try{
+    const
+  }catch(err){
+    console.log(err);
+  }
 
-app.get('/request-appointment', async (req, res) => {
-    try{
-        const emailGet = req.cookies.email;
-        const user = await User.findOne(emailGet);
-        const firstName = user.firstName;
-        const lastName = user.lastName;
-        res.redirect('/homepage');
-        }
-    catch(err){
-      console.log(err);
-    }
 });
 
 //Showing inbox page
@@ -229,8 +223,13 @@ app.get('/inbox', async (req, res) => {
     }
     else{
       const messages = await Appointment.find({tutor: user._id});
+      const students = [];
+      messages.forEach(currentItem => {
+        const temp = await User.findOne({_id: currentItem.student});
+        students.push(temp);
+      });
       console.log(messages);
-      res.render('TutorInbox', { messages });
+      res.render('TutorInbox', { messages, students });
     }
   }
   catch(err){

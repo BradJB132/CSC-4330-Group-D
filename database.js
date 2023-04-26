@@ -23,16 +23,12 @@ const userSchema = new mongoose.Schema({
 // define the schema for a student
 const studentSchema = new mongoose.Schema({
   userInfo: userSchema,
-  inbox: [String],
-  schedule: [String]
+  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }]
 });
 
 // define the schema for a tutor
 const tutorSchema = new mongoose.Schema({
   userInfo: userSchema,
-  inbox: [String],
-  subjects: String,
-  schedule: [String],
   requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }]
 });
 
@@ -41,8 +37,9 @@ const appointmentSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  name: {
-    type: String,
+  student: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Student',
     required: true
   },
   tutor: {
@@ -55,6 +52,11 @@ const appointmentSchema = new mongoose.Schema({
     required: true
   }
 });
+
+const rejectSchema = new mongoose.Schema({
+  message: String,
+  tutor: mongoose.Schema.Types.ObjectId
+})
 
 
 //user schema for admin
@@ -93,96 +95,5 @@ module.exports = {
 let adminButtonItems = [];
 function adminButton(item){
     adminButtonItems.push(item);
-}
-
-async function acceptAppointment(student, tutorID, subject, time){
-  try{
-    await Tutor.findOneAndUpdate(
-      {_id: tutorID},
-      {$pop: {inbox: student + "," + subject + "," + time}},
-      done
-    );
-    createAppointment(student, tutorID, subject, time);
-  }catch (error) {
-    res.status(400).json({ error });
-  }
-}
-
-async function declineAppointment(student, tutorID, time, reason){
-  try{
-    await Tutor.findOneAndUpdate(
-      {_id: tutorID},
-      {$pop: {inbox: student + "," + subject + "," + time}},
-      done
-      );
-    await Student.findOneAndUpdate(
-      {_id: tutorID},
-      {$push: {inbox: tutorID + "," + subject + "," + time + "," + reason}},
-      done
-      );
-  }catch (error) {
-    res.status(400).json({ error });
-  }
-}
-
-async function createAppointment(student, tutorID, subject, time){
-  try{
-    await Tutor.findOneAndUpdate(
-      { _id: tutorID},
-      {$push: {schedule: student + "," + subject + "," + time}},
-      done
-      );
-    await Student.findOneAndUpdate(
-      { email: student},
-      {$push: {schedule: tutorID + "," + subject + "," + time}},
-      done
-      );
-  }catch (error) {
-    res.status(400).json({ error });
-  }
-}
-
-async function removeAppointment(student, tutorID, subject, time){
-  try{
-    await Tutor.findOneAndUpdate(
-      { _id: tutorID},
-      {$pop: {schedule: student + "," + subject + "," + time}},
-      done
-      );
-    await Student.findOneAndUpdate(
-      { email: student},
-      {$pop: {schedule: tutorID + "," + subject + "," + time}},
-      done
-      );
-  }catch{
-    res.status(400).json({ error });
-  }
-}
-
-async function updateAppointment(student, tutorID, time, newTime){
-  try{
-    await Tutor.findOneAndUpdate(
-      { _id: tutorID},
-      {$pop: {schedule: student + "," + subject + "," + time}},
-      done
-      );
-    await Student.findOneAndUpdate(
-      { email: student},
-      {$pop: {schedule: tutorID + "," + subject + "," + time}},
-      done
-      );
-    await Tutor.findOneAndUpdate(
-      { _id: tutorID},
-      {$pop: {schedule: student + "," + subject + "," + newTime}},
-      done
-      );
-    await Student.findOneAndUpdate(
-      { email: student},
-      {$pop: {schedule: tutorID + "," + subject + "," + newTime}},
-      done
-      );
-  }catch{
-    res.status(400).json({ error });
-  }
 }
 

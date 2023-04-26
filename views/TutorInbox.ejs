@@ -45,11 +45,15 @@
 <div>
 <% for (var i = 0; i < messages.length; i++) { %>
     <div class="card">
-      <h2><%= messages[i].name %></h2>
+      <h2><%= students[i].firstName %>  <%= students[i].lastName %></h2>
       <h2><%= messages[i].dayTime %></h2>
-      <form action="/appointments" method="post">
-       <button type="submit">Accept Appointment</button>
-       <button type="submit">Deny Appointment</button>
+      <input type="hidden" id="studentId" name="studentId" value="<%= students[i]._id %>"></input>
+      <form action="/accept" method="post">
+       <button type="submit" id="accept">Accept Appointment</button>
+
+      </form>
+      <form action="/deny" method="post">
+       <button type="submit" id="deny">Deny Appointment</button>
            <div class="form-control">
               <label for="response">Reason for denial</label>
               <textarea
