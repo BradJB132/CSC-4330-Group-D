@@ -19,11 +19,11 @@ const userSchema = new mongoose.Schema({
     enum: ['Student', 'Tutor', 'Admin']
   },
   rating: {
-    type: number,
+    type: Number,
     required: false
   },
   numRatings: {
-    type: number,
+    type: Number,
     required: false
   }
 });
