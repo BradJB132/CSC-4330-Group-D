@@ -76,7 +76,7 @@
       <p><span class="rating">Rating:</span> <%= tutors[i].rating %></p>
       <form action="/appointments" method="post">
            <label for="dayTime">Date and Time:</label>
-           <input type="datetime-local" id="dayTime" name="dayTime" required>
+           <input type="datetime-local" id="dayTime" name="dayTime" min="<%= formattedDate %>" required>
 
            <input type="hidden" id="tutorId" name="tutorId" value="<%= tutors[i]._id %>"></input>
 

@@ -99,6 +99,8 @@ app.get('/homepage', async (req, res) => {
     const user = await User.findOne(emailGet);
     if(user.role == 'Tutor')
       res.redirect('/schedule');
+    const now = new Date();
+    const formattedDate = now.toISOString().slice(0, 16);
     const tutors = await User.find({ role: 'Tutor'});
     const firstName = user.firstName;
     const lastName = user.lastName;
@@ -108,7 +110,7 @@ app.get('/homepage', async (req, res) => {
     if(role == "Admin")
       res.redirect('/admin');
     else
-      res.render('Homepage', { tutors, emailGet });
+      res.render('Homepage', { tutors, emailGet, formattedDate });
   } catch (error) {
     res.status(400).json({ error });
   }
