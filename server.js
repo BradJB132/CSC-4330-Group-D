@@ -307,6 +307,7 @@ app.post('/rate', async (req, res) => {
       numRating = temp.numRatings;
       console.log("numRatings1: " + numRating);
       numRating += 1;
+      console.log("rate " + rate);
       rating = (rating + req.body.rate) / numRating;
       console.log("rating2: " + rating);
       console.log("numRatings2: " + numRating);
