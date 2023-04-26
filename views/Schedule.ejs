@@ -23,6 +23,26 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
   }
+  .card {
+    background-color: lightskyblue;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 10px;
+    width: 800px;
+    height: 50px;
+    position: relative;
+  }
+  #appointText {
+  text-align: center;
+  }
+  #appointDetails {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  }
   </style>
 </head>
 <body>
@@ -43,12 +63,15 @@
   </div>
 <p style="text-align: center;">No Upcoming Appointments</p>
 <div>
-  <h1>Appointments</h1>
+  <h1 id="appointText">Appointments</h1>
+  <br>
+  <div class="card">
   <ul>
     <% for (let i = 0; i < schedule.length; i++) { %>
-      <li><%= others[i].firstName + " " + others[i].lastName %><br><%= schedule[i].dayTime %><br><button>Click me</button></li>
+      <li id="appointDetails"><%= others[i].firstName + " " + others[i].lastName %><br><%= schedule[i].dayTime %><br><button>Click me</button></li>
     <% } %>
   </ul>
+  </div>
 </div>
 </body>
 </html> 
