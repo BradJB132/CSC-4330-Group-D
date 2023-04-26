@@ -233,7 +233,7 @@ app.get('/inbox', async (req, res) => {
       res.render('StudentInbox', {messages, names});
     }
     else{
-      const messages = await Appointment.find({tutor: user._id});
+      const messages = await Appointment.find({tutor: user._id, state: 'Pending'});
       let students = [];
       for(i = 0; i < messages.length; i++){
         let temp = await User.findOne({_id: messages[i].student})
@@ -282,6 +282,34 @@ app.get('/schedule', async (req, res) => {
     }
     res.render('Schedule', {user, schedule, others});
 
+  }catch(err){
+    console.log(err);
+  }
+});
+
+app.post('/rate', async (req, res) => {
+  try{
+    const emailGet = req.cookies.email;
+    const user = await User.findOne(emailGet);
+    const ID = req.body.appointId;
+    const appointment = await Appointment.findOne({_id: ID});
+    let rating = 0;
+    let numRatings = 0;
+    if(user.role == "Student"){
+      rating = await User.findOne({_id: appointment.tutor}).rating;
+      numRating = await User.findOne({_id: appointment.tutor}).numRatings;
+      numRating += 1;
+      rating = (rating + req.body.rateSelect) / numRating;
+      await User.findOneAndUpdate({_id: appointment.tutor}, {rating: rating, numRatings: numRating});
+    }else{
+      rating = await User.findOne({_id: appointment.student}).rating;
+      numRating = await User.findOne({_id: appointment.student}).numRatings;
+      numRating += 1;
+      rating = (rating + req.body.rateSelect) / numRating;
+      await User.findOneAndUpdate({_id: appointment.student}, {rating: rating, numRatings: numRating});
+    }
+    await Appointment.deleteOne({_id: ID});
+    res.redirect('/schedule');
   }catch(err){
     console.log(err);
   }

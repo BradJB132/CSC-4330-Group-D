@@ -45,7 +45,8 @@ const appointmentSchema = new mongoose.Schema({
   },
   state: {
     type: String,
-    required: true
+    required: true,
+    enum: ['Pending', 'Accepted', 'Declined']
   },
   message: {
     type: String,
