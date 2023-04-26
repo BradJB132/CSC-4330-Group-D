@@ -42,6 +42,14 @@
   
   </div>
 <p style="text-align: center;">No Messages</p>
+<div>
+      <% for (var i = 0; i < messages.length; i++) { %>
+      <div class="card">
+      <h2><%= names[i].firstName %>  <%= names[i].lastName %></h2>
+      <h2><%= messages[i].dayTime %> <%= messages[i].response %></h2>
+      </div>
+   <% } %>
+</div>
 
 </body>
 </html> 
