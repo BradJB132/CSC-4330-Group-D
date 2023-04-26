@@ -225,9 +225,9 @@ app.get('/inbox', async (req, res) => {
     }
     else{
       const messages = await Appointment.find({tutor: user._id});
-      const students = [];
+      let students = [];
       for(i = 0; i < messages.length; i++){
-        const temp = await User.findOne({_id: messages[i].student})
+        let temp = await User.findOne({_id: messages[i]._id})
         students.push(temp);
       }
 
