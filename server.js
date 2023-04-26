@@ -38,6 +38,7 @@ app.post("/signup", (req, res) => {
     myData.save()
         .then(item => {
             res.cookie('email', { email });
+            res.redirect('/homepage');
         })
         .catch(err => {
             res.status(400).send("Unable to save to database");
