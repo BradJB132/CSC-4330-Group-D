@@ -73,6 +73,7 @@
       <h2><%= tutors[i].firstName %> <%= tutors[i].lastName %></h2>
       <p><span class="email">Email:</span> <%= tutors[i].email %></p>
       <p><span class="subjects">Subject:</span> <%= tutors[i].subjects %></p>
+      <p><span class="rating">Rating:</span> <%= tutors[i].rating %></p>
       <form action="/appointments" method="post">
            <label for="dayTime">Date and Time:</label>
            <input type="datetime-local" id="dayTime" name="dayTime" required>
