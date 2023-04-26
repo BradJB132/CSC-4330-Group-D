@@ -206,7 +206,7 @@ app.post('/appointments', async (req, res) => {
 
 app.post('/accept', async (req, res) =>{
   try{
-    const
+
   }catch(err){
     console.log(err);
   }
