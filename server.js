@@ -300,7 +300,11 @@ app.post('/rate', async (req, res) => {
     let numRatings = 0;
     if(user.role == "Student"){
       rating = await User.findOne({_id: appointment.tutor}).rating;
+      if(isNaN(rating))
+        rating = 0;
       numRating = await User.findOne({_id: appointment.tutor}).numRatings;
+      if(isNaN(numRating))
+        rating = 0;
       numRating += 1;
       rating = (rating + req.body.rateSelect) / numRating;
       await User.findOneAndUpdate({_id: appointment.tutor}, {rating: rating, numRatings: numRating});
